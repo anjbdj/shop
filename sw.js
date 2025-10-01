@@ -9,26 +9,28 @@ if (workbox) {
   console.log(`Boo! Workbox didn't load 😬`);
 } 
 
-const CACHE_NAME = 'pwa-cache-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js'
-];
+let deferredPrompt;
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
-  );
-});
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the default prompt from showing
+  e.preventDefault();
+  // Save the event for later use
+  deferredPrompt = e;
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
-  );
+
+
+  self.addEventListener('click', () => {
+    // Show the prompt
+    deferredPrompt.prompt();
+    
+    // Wait for the user's response to the prompt
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+      deferredPrompt = null;
+    });
+  });
 });
