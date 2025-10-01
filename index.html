@@ -122,13 +122,11 @@
     -->
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('/sw.js', {scope:'/'})
-            .then(reg => console.log('Service Worker registered', reg))
-            .catch(err => console.error('Service Worker registration failed', err));
-        });
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+         });
       }
-    </script>
+  </script>
   </body>
 </html>
