@@ -3,12 +3,12 @@
 "theme_color":"#8936FF",
 "background_color":"#2EC6FE",
 "icons":[
-    {   "purpose":"maskable",
-        "sizes":"512x512",
-        "src":"icons/icon-512.png",
+    {   
+        "sizes":"192x192",
+        "src":"icons/icon-192.png",
         "type":"image/png"
     },
-    {   "purpose":"any",
+    { 
         "sizes":"512x512",
         "src":"icons/icon-512.png",
         "type":"image/png"
@@ -21,6 +21,6 @@
 "lang":"en-US",
 "name":"AwesomePWA",
 "short_name":"AwesomePWA",
-"start_url":"https://anjbdj.github.io/shop/",
-"scope":"https://anjbdj.github.io/shop/"
+"start_url":"index.html",
+"scope":"."
 }
