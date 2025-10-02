@@ -4,24 +4,24 @@ const urlsToCache = [
   '/index.html',
   '/styles.css',
   '/app.js',
-  '/icon-192.png',
-  '/icon-512.png'
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
-// Install event: cache files
-self.addEventListener('install', (event) => {
+// Install event: cache all files
+self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
 });
 
 // Activate event
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   event.waitUntil(self.clients.claim());
 });
 
-// Fetch event: serve cached files
-self.addEventListener('fetch', (event) => {
+// Fetch event: serve cached content
+self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => response || fetch(event.request))
   );
