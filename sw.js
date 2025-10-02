@@ -1,53 +1,28 @@
-const staticCacheName = "pwa-cache-v1";
-const assets = [
-  "/",
-  "/index.html",
-  "/styles.css",
-  "/app.js",
-  "/manifest.json",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-  // Add other necessary assets here
+const CACHE_NAME = 'pwa-cache-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/icon-192.png',
+  '/icon-512.png'
 ];
 
-// Install event – cache core assets
-self.addEventListener("install", (event) => {
+// Install event: cache files
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
-      return cache.addAll(assets);
-    })
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
-  self.skipWaiting(); // Activate the service worker immediately
 });
 
-// Activate event – clean up old caches
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames
-          .filter((name) => name !== staticCacheName)
-          .map((name) => caches.delete(name))
-      );
-    })
-  );
-  self.clients.claim(); // Take control immediately
+// Activate event
+self.addEventListener('activate', (event) => {
+  event.waitUntil(self.clients.claim());
 });
 
-// Fetch event – serve from cache or fallback to network
-self.addEventListener("fetch", (event) => {
+// Fetch event: serve cached files
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      // Serve from cache, or fetch from network if not found
-      return (
-        cachedResponse ||
-        fetch(event.request).catch(() => {
-          // If offline and resource not in cache, fallback
-          if (event.request.mode === "navigate") {
-            return caches.match("/index.html");
-          }
-        })
-      );
-    })
+    caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
