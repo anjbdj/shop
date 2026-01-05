@@ -1,6 +1,6 @@
 {
   "name": "My Shop App",
-  "short_name": "PWA",
+  "short_name": "Shop",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
