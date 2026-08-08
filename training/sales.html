@@ -1,68 +1,630 @@
-बिलकुल! यहाँ वही टिप्स **हिंदी में** दी गई हैं, ताकि आप अपने शॉप की सेल बढ़ा सकें:
+```html
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
----
+    <title>दुकान की सेल बढ़ाने के आसान तरीके</title>
 
-### 🛍️ दुकान का माहौल
+    <!-- Bootstrap 4.6.2 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-* दुकान को **साफ-सुथरा, रोशन और व्यवस्थित** रखें – पहली छवि बहुत मायने रखती है।
-* **बेस्ट-सेलिंग या हाई-प्रॉफिट प्रोडक्ट्स** को आंखों की ऊंचाई पर रखें।
-* **स्पष्ट प्राइस टैग और साइनबोर्ड** लगाएं (ऑफर, नए प्रोडक्ट, बेस्ट डील)।
-* **सुखद बैकग्राउंड म्यूजिक और अच्छी लाइटिंग** रखें।
+    <style>
+        body {
+            background: #f5f7fa;
+            color: #333;
+            font-family: "Noto Sans Devanagari", "Mangal", Arial, sans-serif;
+            line-height: 1.8;
+        }
 
----
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #00695c, #009688);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
 
-### 🤝 ग्राहक सेवा
+        .hero-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
 
-* ग्राहकों का **स्नेहपूर्वक स्वागत** करें, लेकिन ज़्यादा परेशान न करें।
-* ग्राहकों की ज़रूरतों को **ध्यान से सुनें और उपयुक्त प्रोडक्ट सुझाएं** (cross-selling)।
-* स्टाफ को **दोस्ताना, जानकार और तेज़** बनाया जाए।
-* नियमित ग्राहकों और उनकी पसंद को याद रखें।
+        .hero h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
 
----
+        .hero p {
+            font-size: 1.1rem;
+            margin: 0 auto;
+            max-width: 750px;
+            opacity: 0.95;
+        }
 
-### 💰 प्राइसिंग और ऑफ़र
+        /* Section */
+        .section-title {
+            text-align: center;
+            color: #263238;
+            font-weight: 700;
+            margin: 50px 0 30px;
+        }
 
-* **सीमित समय के डिस्काउंट** या “1 खरीदें 1 मुफ्त पाएं” ऑफ़र दें।
-* **बंडल ऑफ़र** दें (जैसे 3 आइटम्स पर कम कीमत)।
-* **लॉयल्टी प्रोग्राम** बनाएं (पॉइंट्स, स्टैम्प या मेंबर डिस्काउंट)।
-* **मूल्य तुलना दिखाएं** (जैसे “₹50 बचाएं”)।
+        .section-title span {
+            display: block;
+            width: 55px;
+            height: 4px;
+            background: #009688;
+            margin: 10px auto 0;
+            border-radius: 5px;
+        }
 
----
+        /* Tip Cards */
+        .tip-card {
+            height: 100%;
+            background: #fff;
+            border: 0;
+            border-radius: 14px;
+            padding: 28px 25px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-### 📦 प्रोडक्ट रणनीति
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 9px 28px rgba(0, 0, 0, 0.12);
+        }
 
-* लोकप्रिय प्रोडक्ट्स **हमेशा स्टॉक में रखें**।
-* धीरे बिकने वाले प्रोडक्ट्स को डिस्काउंट करें या हटाएं।
-* **नए और ट्रेंडिंग प्रोडक्ट्स** नियमित रूप से लाएँ।
-* ग्राहकों से पूछें कि वे क्या चाहते हैं और उसे स्टॉक करें।
+        .tip-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #009688;
+        }
 
----
+        .tip-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
 
-### 📢 मार्केटिंग और दृश्यता
+        .tip-card h3 {
+            color: #263238;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
 
-* ऑफ़र और नए स्टॉक की जानकारी **WhatsApp, Instagram, Facebook** पर शेयर करें।
-* दुकान के बाहर **स्पष्ट साइनबोर्ड** लगाएँ।
-* खुश ग्राहकों से **शॉप की सिफ़ारिश** कराने के लिए कहें।
-* पास-पड़ोस के व्यवसायों के साथ **रिफ़रल पार्टनरशिप** बनाएं।
+        .tip-card ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
 
----
+        .tip-card li {
+            margin-bottom: 12px;
+        }
 
-### ⏱️ सुविधा
+        .tip-card li:last-child {
+            margin-bottom: 0;
+        }
 
-* **कई पेमेंट ऑप्शन** दें (UPI, कार्ड, नकद)।
-* बिलिंग तेज़ करें और लंबी लाइन से बचाएँ।
-* संभव हो तो **होम डिलीवरी या पिकअप ऑर्डर** की सुविधा दें।
+        .tip-card strong {
+            color: #00695c;
+        }
 
----
+        /* Different Card Colors */
+        .green-card::before {
+            background: #009688;
+        }
 
-### 📊 ट्रैक और सुधार
+        .blue-card::before {
+            background: #1976d2;
+        }
 
-* रोज़ाना बिक्री को ट्रैक करें – देखें **कौन सा प्रोडक्ट कब सबसे ज़्यादा बिकता है**।
-* पीक ऑवर्स नोट करें और स्टाफ उसी अनुसार रखें।
-* छोटे बदलाव (लेआउट, प्राइस, ऑफ़र) ट्राय करें और देखें क्या काम करता है।
+        .orange-card::before {
+            background: #f57c00;
+        }
 
----
+        .purple-card::before {
+            background: #7b1fa2;
+        }
 
-अगर आप चाहो तो मैं आपके **शॉप की टाइप और लोकेशन के हिसाब से 5-10 सुपर-प्रैक्टिकल टिप्स** भी बना सकता हूँ, जो तुरंत सेल बढ़ा दें।
+        .red-card::before {
+            background: #d32f2f;
+        }
 
-क्या मैं वो कर दूँ?
+        .indigo-card::before {
+            background: #3949ab;
+        }
+
+        .teal-card::before {
+            background: #00897b;
+        }
+
+        /* Quick Tip */
+        .quick-tip {
+            background: linear-gradient(135deg, #e0f2f1, #f1f8e9);
+            border: 1px solid #b2dfdb;
+            border-radius: 14px;
+            padding: 30px;
+            margin-top: 45px;
+        }
+
+        .quick-tip h2 {
+            color: #00695c;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .quick-tip li {
+            margin-bottom: 10px;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #004d40, #00796b);
+            color: #fff;
+            text-align: center;
+            padding: 45px 25px;
+            border-radius: 16px;
+            margin: 55px 0;
+        }
+
+        .cta h2 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 22px;
+            background: #fff;
+            color: #00695c;
+            padding: 11px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            color: #004d40;
+            text-decoration: none;
+            background: #f5f5f5;
+        }
+
+        /* Footer */
+        footer {
+            background: #263238;
+            color: #cfd8dc;
+            text-align: center;
+            padding: 28px 15px;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+
+            .hero {
+                padding: 45px 15px;
+            }
+
+            .hero-icon {
+                font-size: 45px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-top: 38px;
+            }
+
+            .tip-card {
+                padding: 23px 20px;
+            }
+
+            .tip-card h3 {
+                font-size: 1.15rem;
+            }
+
+            .quick-tip {
+                padding: 22px;
+            }
+
+            .cta {
+                padding: 35px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+    <div class="container">
+
+        <div class="hero-icon">🛍️</div>
+
+        <h1>दुकान की सेल बढ़ाने के आसान तरीके</h1>
+
+        <p>
+            अपने शॉप की बिक्री बढ़ाने के लिए इन आसान और
+            प्रैक्टिकल टिप्स को अपनाएँ।
+        </p>
+
+    </div>
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="container">
+
+    <h2 class="section-title">
+        📈 सेल बढ़ाने के 7 महत्वपूर्ण तरीके
+        <span></span>
+    </h2>
+
+
+    <!-- 1. दुकान का माहौल -->
+
+    <div class="row">
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="tip-card green-card">
+
+                <div class="tip-icon">🛍️</div>
+
+                <h3>दुकान का माहौल</h3>
+
+                <ul>
+                    <li>
+                        दुकान को <strong>साफ-सुथरा, रोशन और व्यवस्थित</strong>
+                        रखें – पहली छवि बहुत मायने रखती है।
+                    </li>
+
+                    <li>
+                        <strong>बेस्ट-सेलिंग या हाई-प्रॉफिट प्रोडक्ट्स</strong>
+                        को आंखों की ऊंचाई पर रखें।
+                    </li>
+
+                    <li>
+                        <strong>स्पष्ट प्राइस टैग और साइनबोर्ड</strong>
+                        लगाएं – ऑफर, नए प्रोडक्ट और बेस्ट डील।
+                    </li>
+
+                    <li>
+                        <strong>सुखद बैकग्राउंड म्यूजिक</strong> और
+                        अच्छी लाइटिंग रखें।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- 2. ग्राहक सेवा -->
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="tip-card blue-card">
+
+                <div class="tip-icon">🤝</div>
+
+                <h3>ग्राहक सेवा</h3>
+
+                <ul>
+                    <li>
+                        ग्राहकों का <strong>स्नेहपूर्वक स्वागत</strong>
+                        करें, लेकिन ज़्यादा परेशान न करें।
+                    </li>
+
+                    <li>
+                        ग्राहकों की ज़रूरतों को <strong>ध्यान से सुनें</strong>
+                        और उपयुक्त प्रोडक्ट सुझाएं।
+                    </li>
+
+                    <li>
+                        स्टाफ को <strong>दोस्ताना, जानकार और तेज़</strong>
+                        बनाया जाए।
+                    </li>
+
+                    <li>
+                        नियमित ग्राहकों और उनकी <strong>पसंद को याद रखें</strong>।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- 3. Pricing -->
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="tip-card orange-card">
+
+                <div class="tip-icon">💰</div>
+
+                <h3>प्राइसिंग और ऑफ़र</h3>
+
+                <ul>
+                    <li>
+                        <strong>सीमित समय के डिस्काउंट</strong> या
+                        “1 खरीदें 1 मुफ्त पाएं” ऑफ़र दें।
+                    </li>
+
+                    <li>
+                        <strong>बंडल ऑफ़र</strong> दें,
+                        जैसे 3 आइटम्स पर कम कीमत।
+                    </li>
+
+                    <li>
+                        <strong>लॉयल्टी प्रोग्राम</strong> बनाएं –
+                        पॉइंट्स, स्टैम्प या मेंबर डिस्काउंट।
+                    </li>
+
+                    <li>
+                        <strong>मूल्य तुलना दिखाएं</strong>,
+                        जैसे “₹50 बचाएं”।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- 4. Product Strategy -->
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="tip-card purple-card">
+
+                <div class="tip-icon">📦</div>
+
+                <h3>प्रोडक्ट रणनीति</h3>
+
+                <ul>
+                    <li>
+                        लोकप्रिय प्रोडक्ट्स को
+                        <strong>हमेशा स्टॉक में रखें</strong>।
+                    </li>
+
+                    <li>
+                        धीरे बिकने वाले प्रोडक्ट्स को
+                        <strong>डिस्काउंट करें या हटाएं</strong>।
+                    </li>
+
+                    <li>
+                        <strong>नए और ट्रेंडिंग प्रोडक्ट्स</strong>
+                        नियमित रूप से लाएँ।
+                    </li>
+
+                    <li>
+                        ग्राहकों से पूछें कि वे क्या चाहते हैं
+                        और उसे स्टॉक करें।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- 5. Marketing -->
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="tip-card red-card">
+
+                <div class="tip-icon">📢</div>
+
+                <h3>मार्केटिंग और दृश्यता</h3>
+
+                <ul>
+                    <li>
+                        ऑफ़र और नए स्टॉक की जानकारी
+                        <strong>WhatsApp, Instagram, Facebook</strong>
+                        पर शेयर करें।
+                    </li>
+
+                    <li>
+                        दुकान के बाहर
+                        <strong>स्पष्ट साइनबोर्ड</strong> लगाएँ।
+                    </li>
+
+                    <li>
+                        खुश ग्राहकों से
+                        <strong>शॉप की सिफ़ारिश</strong> कराने के लिए कहें।
+                    </li>
+
+                    <li>
+                        पास-पड़ोस के व्यवसायों के साथ
+                        <strong>रिफ़रल पार्टनरशिप</strong> बनाएं।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- 6. Convenience -->
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="tip-card indigo-card">
+
+                <div class="tip-icon">⏱️</div>
+
+                <h3>सुविधा</h3>
+
+                <ul>
+                    <li>
+                        <strong>कई पेमेंट ऑप्शन</strong> दें –
+                        UPI, कार्ड और नकद।
+                    </li>
+
+                    <li>
+                        बिलिंग तेज़ करें और
+                        <strong>लंबी लाइन से बचाएँ</strong>।
+                    </li>
+
+                    <li>
+                        संभव हो तो
+                        <strong>होम डिलीवरी</strong> की सुविधा दें।
+                    </li>
+
+                    <li>
+                        ग्राहकों के लिए
+                        <strong>पिकअप ऑर्डर</strong> की सुविधा रखें।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- 7. Track & Improve -->
+
+        <div class="col-md-6 col-lg-4 mb-4 mx-md-auto">
+            <div class="tip-card teal-card">
+
+                <div class="tip-icon">📊</div>
+
+                <h3>ट्रैक और सुधार</h3>
+
+                <ul>
+                    <li>
+                        रोज़ाना बिक्री को ट्रैक करें और देखें
+                        <strong>कौन सा प्रोडक्ट कब सबसे ज़्यादा बिकता है</strong>।
+                    </li>
+
+                    <li>
+                        <strong>पीक ऑवर्स</strong> नोट करें और
+                        स्टाफ उसी अनुसार रखें।
+                    </li>
+
+                    <li>
+                        छोटे बदलाव – <strong>लेआउट, प्राइस और ऑफ़र</strong>
+                        ट्राय करें।
+                    </li>
+
+                    <li>
+                        देखें कि कौन सा बदलाव
+                        <strong>वास्तव में काम करता है</strong>।
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= QUICK ACTION PLAN ================= -->
+
+    <div class="quick-tip">
+
+        <h2>🚀 आज से शुरू करने के 5 आसान काम</h2>
+
+        <ol class="mt-3 mb-0">
+
+            <li>
+                दुकान को साफ करके सभी प्रोडक्ट्स को व्यवस्थित करें।
+            </li>
+
+            <li>
+                सबसे ज्यादा बिकने वाले प्रोडक्ट्स को
+                सामने और आंखों की ऊंचाई पर रखें।
+            </li>
+
+            <li>
+                एक छोटा और आकर्षक ऑफ़र बोर्ड लगाएँ।
+            </li>
+
+            <li>
+                WhatsApp पर अपने ग्राहकों को नए स्टॉक और ऑफ़र की जानकारी भेजें।
+            </li>
+
+            <li>
+                दिन के अंत में बिक्री देखें और पता करें कि
+                आज क्या सबसे ज्यादा बिका।
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <!-- ================= FINAL CTA ================= -->
+
+    <div class="cta">
+
+        <h2>💡 अपनी दुकान की सेल और बढ़ाएँ!</h2>
+
+        <p>
+            हर दुकान अलग होती है। आपकी दुकान किस प्रकार की है,
+            ग्राहक किस तरह के हैं और दुकान कहाँ स्थित है –
+            इन बातों के अनुसार सही रणनीति बनाकर बिक्री को और बेहतर किया जा सकता है।
+        </p>
+
+        <a href="#tips" class="cta-button">
+            और प्रैक्टिकल टिप्स देखें
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container">
+
+        <p class="mb-1">
+            <strong>🛍️ आपकी दुकान • आपकी तरक्की</strong>
+        </p>
+
+        <small>
+            बेहतर ग्राहक सेवा • सही प्रोडक्ट • स्मार्ट ऑफ़र • ज्यादा बिक्री
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap 4.6.2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+```
