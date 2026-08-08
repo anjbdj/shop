@@ -1,92 +1,1218 @@
-customer engagement 
-बिलकुल! यहाँ मैं आपको **एक पूर्ण ग्राहक सगाई (Customer Engagement) का फ्रेमवर्क** हिंदी में दे रहा हूँ, जिसे आप किसी भी दुकान में लागू करके ग्राहक संतुष्टि और बिक्री दोनों बढ़ा सकते हैं। इसे चरणबद्ध और व्यवस्थित रूप में प्रस्तुत किया गया है।
+```html
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
----
+    <title>Customer Engagement Framework | ग्राहक सगाई फ्रेमवर्क</title>
 
-## **ग्राहक सगाई (Customer Engagement) फ्रेमवर्क**
+    <!-- Bootstrap 4.6.2 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-### **1. ग्राहक पहचान और समझ (Customer Identification & Understanding)**
+    <style>
+        body {
+            background: #f5f7fa;
+            color: #333;
+            font-family: "Noto Sans Devanagari", "Mangal", Arial, sans-serif;
+            line-height: 1.8;
+        }
 
-* **ग्राहक प्रोफाइल बनाना:** आयु, लिंग, रुचियाँ, खरीद पैटर्न इत्यादि।
-* **ग्राहक जरूरतों की पहचान:** पूछताछ, फीडबैक, पिछले खरीद रिकॉर्ड से।
-* **सेगमेंटेशन:** ग्राहकों को श्रेणियों में बाँटना जैसे नियमित, नए, उच्च मूल्य वाले ग्राहक।
+        /* ================= HERO ================= */
 
-**उद्देश्य:** सही ग्राहक को सही ऑफ़र और अनुभव देना।
+        .hero {
+            background: linear-gradient(135deg, #00695c, #009688);
+            color: #fff;
+            padding: 65px 20px;
+            text-align: center;
+        }
 
----
+        .hero-icon {
+            font-size: 58px;
+            margin-bottom: 10px;
+        }
 
-### **2. स्वागत और अनुभव (Welcoming & Experience)**
+        .hero h1 {
+            font-size: 2.35rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
 
-* **सकारात्मक स्वागत:** मुस्कान, नम्रता, व्यक्तिगत अभिवादन।
-* **दुकान का आकर्षक वातावरण:** साफ-सुथरा, व्यवस्थित, आरामदायक।
-* **उत्पाद जानकारी उपलब्ध कराना:** आसानी से पहचानने योग्य लेबल, विवरण, और प्रदर्शन।
+        .hero p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
 
-**उद्देश्य:** ग्राहक को पहली नजर में सकारात्मक अनुभव देना।
+        .hero-badge {
+            display: inline-block;
+            margin-top: 22px;
+            padding: 7px 18px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            font-size: 0.95rem;
+        }
 
----
+        /* ================= SECTION ================= */
 
-### **3. संवाद और इंटरैक्शन (Communication & Interaction)**
+        .section-title {
+            text-align: center;
+            color: #263238;
+            font-weight: 700;
+            margin: 50px 0 30px;
+        }
 
-* **व्यक्तिगत बातचीत:** ग्राहक से उनकी ज़रूरतों और पसंद के बारे में पूछें।
-* **सवाल-जवाब और सलाह:** उत्पाद/सेवा के लाभ और उपयोग समझाएँ।
-* **सुनना:** ग्राहक की समस्याओं और सुझावों पर ध्यान दें।
+        .section-title span {
+            display: block;
+            width: 55px;
+            height: 4px;
+            background: #009688;
+            margin: 10px auto 0;
+            border-radius: 5px;
+        }
 
-**उद्देश्य:** ग्राहक के साथ भरोसा और कनेक्शन बनाना।
+        .section-intro {
+            max-width: 800px;
+            margin: -15px auto 30px;
+            text-align: center;
+            color: #607d8b;
+        }
 
----
+        /* ================= FRAMEWORK CARDS ================= */
 
-### **4. मूल्य संवर्धन (Value Addition)**
+        .framework-card {
+            height: 100%;
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px 25px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.07);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
 
-* **विशेष ऑफ़र और डिस्काउंट:** खरीदी को और आकर्षक बनाना।
-* **लॉयल्टी प्रोग्राम:** नियमित ग्राहक को बोनस पॉइंट्स या रिवार्ड देना।
-* **उपहार और सैंपल:** पहली खरीद पर छोटा उपहार या नया प्रोडक्ट ट्रायल।
+        .framework-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 9px 28px rgba(0,0,0,0.12);
+        }
 
-**उद्देश्य:** ग्राहक को ऐसा महसूस कराना कि वे विशेष हैं।
+        .framework-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #009688;
+        }
 
----
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
 
-### **5. बिक्री अनुभव और सरलता (Sales Experience & Convenience)**
+        .step-number {
+            display: inline-block;
+            background: #e0f2f1;
+            color: #00796b;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-* **सुविधाजनक पेमेंट विकल्प:** कार्ड, मोबाइल पेमेंट, ई-वॉलेट।
-* **तेज़ और सरल चेकआउट प्रक्रिया।**
-* **स्टॉक और उपलब्धता की जानकारी:** ऑनलाइन या दुकान पर आसानी से उपलब्ध।
+        .framework-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #263238;
+            margin-bottom: 18px;
+        }
 
-**उद्देश्य:** खरीदारी को सहज और तनावमुक्त बनाना।
+        .framework-card ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
 
----
+        .framework-card li {
+            margin-bottom: 10px;
+        }
 
-### **6. बिक्री के बाद सेवा (Post-Sales Service)**
+        .objective {
+            background: #f1f8e9;
+            border-left: 4px solid #8bc34a;
+            padding: 10px 13px;
+            border-radius: 5px;
+            color: #33691e;
+            font-size: 0.95rem;
+        }
 
-* **फॉलो-अप कॉल/मैसेज:** संतुष्टि की जांच करना।
-* **रिटर्न और रिपेयर नीति:** सरल, पारदर्शी और ग्राहक अनुकूल।
-* **ग्राहक फीडबैक लेना:** सुधार और नए आइडिया के लिए।
+        .objective strong {
+            color: #558b2f;
+        }
 
-**उद्देश्य:** ग्राहक विश्वास और वफादारी बनाना।
+        /* Different colors */
 
----
+        .card-blue::before {
+            background: #1976d2;
+        }
 
-### **7. डिजिटल और सोशल मीडिया सगाई (Digital & Social Engagement)**
+        .card-orange::before {
+            background: #f57c00;
+        }
 
-* **सोशल मीडिया पर संपर्क:** नए प्रोडक्ट्स और ऑफ़र साझा करना।
-* **ईमेल / व्हाट्सएप न्यूज़लेटर:** विशेष ऑफ़र और नई जानकारी भेजना।
-* **ऑनलाइन रिव्यू और रेटिंग्स:** सकारात्मक समीक्षा बढ़ाना।
+        .card-purple::before {
+            background: #7b1fa2;
+        }
 
-**उद्देश्य:** ग्राहक को डिजिटल प्लेटफ़ॉर्म पर भी जोड़कर ब्रांड की पहचान बढ़ाना।
+        .card-red::before {
+            background: #d32f2f;
+        }
 
----
+        .card-indigo::before {
+            background: #3949ab;
+        }
 
-### **8. ग्राहक वफादारी और रिटेंशन (Customer Loyalty & Retention)**
+        .card-pink::before {
+            background: #c2185b;
+        }
 
-* **रिवॉर्ड प्रोग्राम:** लगातार खरीदारी पर अंक या डिस्काउंट।
-* **VIP इवेंट्स:** विशेष ग्राहक के लिए प्रीव्यू या ईवेंट।
-* **पर्सनलाइजेशन:** ग्राहक की पसंद के अनुसार ऑफ़र।
+        .card-teal::before {
+            background: #00897b;
+        }
 
-**उद्देश्य:** एक बार आने वाले ग्राहक को लंबे समय तक जोड़े रखना।
+        /* ================= JOURNEY ================= */
 
----
+        .journey-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 25px 15px;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+        }
 
-### **निष्कर्ष**
+        .journey-icon {
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
 
-इस फ्रेमवर्क का उद्देश्य केवल बिक्री बढ़ाना नहीं है, बल्कि ग्राहक के **संतोष और विश्वास** को बढ़ाना है। एक खुश ग्राहक न केवल बार-बार आता है बल्कि दूसरों को भी आपके शॉप की सलाह देता है।
+        .journey-card h4 {
+            font-size: 1rem;
+            color: #263238;
+            font-weight: 700;
+        }
 
----
+        .journey-card p {
+            font-size: 0.9rem;
+            color: #607d8b;
+            margin-bottom: 0;
+        }
+
+        .journey-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            color: #009688;
+        }
+
+        /* ================= READY LINES ================= */
+
+        .ready-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            height: 100%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            border-left: 4px solid #009688;
+        }
+
+        .ready-box h4 {
+            color: #00695c;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .quote {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            margin-top: 12px;
+            border-radius: 6px;
+            color: #37474f;
+            font-style: italic;
+        }
+
+        /* ================= KPI ================= */
+
+        .kpi-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+        }
+
+        .kpi-icon {
+            font-size: 32px;
+        }
+
+        .kpi-card h4 {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .kpi-card p {
+            font-size: 0.9rem;
+            color: #607d8b;
+            margin-bottom: 0;
+        }
+
+        /* ================= ACTION PLAN ================= */
+
+        .action-plan {
+            background: linear-gradient(135deg, #e0f2f1, #f1f8e9);
+            border: 1px solid #b2dfdb;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .action-plan h2 {
+            color: #00695c;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .action-item {
+            background: #fff;
+            padding: 15px 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .action-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .action-number {
+            display: inline-flex;
+            width: 32px;
+            height: 32px;
+            align-items: center;
+            justify-content: center;
+            background: #009688;
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* ================= PRIVACY ================= */
+
+        .privacy-box {
+            background: #fff8e1;
+            border: 1px solid #ffcc80;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 35px;
+        }
+
+        .privacy-box h3 {
+            color: #e65100;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            background: linear-gradient(135deg, #004d40, #00796b);
+            color: #fff;
+            text-align: center;
+            padding: 45px 25px;
+            border-radius: 16px;
+            margin: 55px 0;
+        }
+
+        .cta h2 {
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #263238;
+            color: #cfd8dc;
+            text-align: center;
+            padding: 28px 15px;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 767px) {
+
+            .hero {
+                padding: 45px 15px;
+            }
+
+            .hero-icon {
+                font-size: 45px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-top: 38px;
+            }
+
+            .framework-card {
+                padding: 23px 20px;
+            }
+
+            .action-plan {
+                padding: 22px;
+            }
+
+            .journey-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<header class="hero">
+
+    <div class="container">
+
+        <div class="hero-icon">🤝</div>
+
+        <h1>Customer Engagement Framework</h1>
+
+        <p>
+            ग्राहकों को सिर्फ खरीददार नहीं, बल्कि
+            लंबे समय तक जुड़े रहने वाले भरोसेमंद ग्राहक बनाइए।
+        </p>
+
+        <div class="hero-badge">
+            😊 संतुष्टि &nbsp; • &nbsp; ❤️ भरोसा &nbsp; • &nbsp; 🔁 दोबारा खरीदारी
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<h2 class="section-title">
+    🎯 ग्राहक सगाई (Customer Engagement) फ्रेमवर्क
+    <span></span>
+</h2>
+
+<p class="section-intro">
+    Customer Engagement का उद्देश्य केवल बिक्री बढ़ाना नहीं है।
+    इसका लक्ष्य ग्राहक के साथ बेहतर अनुभव, भरोसा और लंबे समय का संबंध बनाना है।
+</p>
+
+
+<!-- =====================================================
+     CUSTOMER JOURNEY
+===================================================== -->
+
+<h2 class="section-title">
+    🛒 Customer Journey एक नज़र में
+    <span></span>
+</h2>
+
+<div class="row align-items-stretch">
+
+    <div class="col-6 col-md-2 mb-3">
+        <div class="journey-card">
+            <div class="journey-icon">👀</div>
+            <h4>पहचान</h4>
+            <p>ग्राहक को समझें</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-2 mb-3">
+        <div class="journey-card">
+            <div class="journey-icon">👋</div>
+            <h4>स्वागत</h4>
+            <p>अच्छा पहला अनुभव</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-2 mb-3">
+        <div class="journey-card">
+            <div class="journey-icon">💬</div>
+            <h4>संवाद</h4>
+            <p>जरूरत सुनें</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-2 mb-3">
+        <div class="journey-card">
+            <div class="journey-icon">🛍️</div>
+            <h4>खरीदारी</h4>
+            <p>सरल अनुभव दें</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-2 mb-3">
+        <div class="journey-card">
+            <div class="journey-icon">❤️</div>
+            <h4>फॉलो-अप</h4>
+            <p>संबंध बनाए रखें</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-2 mb-3">
+        <div class="journey-card">
+            <div class="journey-icon">🔁</div>
+            <h4>रिटेंशन</h4>
+            <p>दोबारा खरीदारी</p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     8 FRAMEWORK STEPS
+===================================================== -->
+
+<h2 class="section-title">
+    📋 Customer Engagement के 8 चरण
+    <span></span>
+</h2>
+
+<div class="row">
+
+
+<!-- 1 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card">
+
+        <span class="step-number">STEP 01</span>
+
+        <div class="card-icon">👤</div>
+
+        <h3>ग्राहक पहचान और समझ</h3>
+
+        <ul>
+
+            <li>
+                <strong>ग्राहक प्रोफाइल</strong> बनाएं –
+                आयु, रुचियाँ और खरीद पैटर्न।
+            </li>
+
+            <li>
+                ग्राहक की <strong>जरूरतों की पहचान</strong>
+                पूछताछ, फीडबैक और पिछले खरीद रिकॉर्ड से करें।
+            </li>
+
+            <li>
+                ग्राहकों को <strong>नियमित, नए और उच्च-मूल्य</strong>
+                जैसी श्रेणियों में बाँटें।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            सही ग्राहक को सही ऑफ़र और अनुभव देना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-blue">
+
+        <span class="step-number">STEP 02</span>
+
+        <div class="card-icon">👋</div>
+
+        <h3>स्वागत और अनुभव</h3>
+
+        <ul>
+
+            <li>
+                <strong>मुस्कान, नम्रता और व्यक्तिगत अभिवादन</strong>
+                से स्वागत करें।
+            </li>
+
+            <li>
+                दुकान को <strong>साफ-सुथरा, व्यवस्थित और आरामदायक</strong>
+                रखें।
+            </li>
+
+            <li>
+                उत्पाद की जानकारी के लिए
+                <strong>स्पष्ट लेबल और डिस्प्ले</strong> रखें।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            ग्राहक को पहली नजर में सकारात्मक अनुभव देना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-orange">
+
+        <span class="step-number">STEP 03</span>
+
+        <div class="card-icon">💬</div>
+
+        <h3>संवाद और इंटरैक्शन</h3>
+
+        <ul>
+
+            <li>
+                ग्राहक से उनकी <strong>जरूरत और पसंद</strong>
+                के बारे में पूछें।
+            </li>
+
+            <li>
+                उत्पाद के <strong>लाभ और उपयोग</strong> समझाएँ।
+            </li>
+
+            <li>
+                ग्राहक की <strong>समस्या और सुझाव</strong>
+                ध्यान से सुनें।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            ग्राहक के साथ भरोसा और कनेक्शन बनाना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-purple">
+
+        <span class="step-number">STEP 04</span>
+
+        <div class="card-icon">🎁</div>
+
+        <h3>मूल्य संवर्धन</h3>
+
+        <ul>
+
+            <li>
+                <strong>विशेष ऑफ़र और डिस्काउंट</strong>
+                देकर खरीदारी को आकर्षक बनाएं।
+            </li>
+
+            <li>
+                नियमित ग्राहकों के लिए
+                <strong>लॉयल्टी प्रोग्राम</strong> रखें।
+            </li>
+
+            <li>
+                पहली खरीद पर छोटा
+                <strong>उपहार या सैंपल</strong> दिया जा सकता है।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            ग्राहक को विशेष और महत्वपूर्ण महसूस कराना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-red">
+
+        <span class="step-number">STEP 05</span>
+
+        <div class="card-icon">⚡</div>
+
+        <h3>बिक्री अनुभव और सरलता</h3>
+
+        <ul>
+
+            <li>
+                <strong>UPI, कार्ड और मोबाइल पेमेंट</strong>
+                जैसे सुविधाजनक विकल्प दें।
+            </li>
+
+            <li>
+                <strong>तेज़ और सरल चेकआउट</strong>
+                रखें।
+            </li>
+
+            <li>
+                स्टॉक और उपलब्धता की जानकारी
+                आसानी से उपलब्ध कराएँ।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            खरीदारी को सहज और तनावमुक्त बनाना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-indigo">
+
+        <span class="step-number">STEP 06</span>
+
+        <div class="card-icon">📞</div>
+
+        <h3>बिक्री के बाद सेवा</h3>
+
+        <ul>
+
+            <li>
+                ग्राहक से <strong>फॉलो-अप कॉल या मैसेज</strong>
+                करके संतुष्टि पूछें।
+            </li>
+
+            <li>
+                <strong>रिटर्न और रिपेयर नीति</strong>
+                सरल और पारदर्शी रखें।
+            </li>
+
+            <li>
+                ग्राहक से <strong>फीडबैक</strong> लेकर
+                सुधार करें।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            ग्राहक विश्वास और वफादारी बनाना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-pink">
+
+        <span class="step-number">STEP 07</span>
+
+        <div class="card-icon">📱</div>
+
+        <h3>डिजिटल और सोशल मीडिया सगाई</h3>
+
+        <ul>
+
+            <li>
+                नए प्रोडक्ट और ऑफ़र
+                <strong>WhatsApp, Instagram और Facebook</strong>
+                पर साझा करें।
+            </li>
+
+            <li>
+                <strong>ईमेल / WhatsApp न्यूज़लेटर</strong>
+                के जरिए अपडेट भेजें।
+            </li>
+
+            <li>
+                संतुष्ट ग्राहकों से
+                <strong>ईमानदार रिव्यू और रेटिंग</strong>
+                देने के लिए कहें।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            ग्राहक को डिजिटल प्लेटफ़ॉर्म पर भी जोड़कर ब्रांड की पहचान बढ़ाना।
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 8 -->
+
+<div class="col-md-6 col-lg-4 mb-4">
+
+    <div class="framework-card card-teal">
+
+        <span class="step-number">STEP 08</span>
+
+        <div class="card-icon">❤️</div>
+
+        <h3>ग्राहक वफादारी और Retention</h3>
+
+        <ul>
+
+            <li>
+                लगातार खरीदारी पर
+                <strong>रिवॉर्ड या डिस्काउंट</strong> दें।
+            </li>
+
+            <li>
+                विशेष ग्राहकों के लिए
+                <strong>VIP Preview या Events</strong> रखें।
+            </li>
+
+            <li>
+                ग्राहक की पसंद के अनुसार
+                <strong>Personalized Offers</strong> दें।
+            </li>
+
+        </ul>
+
+        <div class="objective">
+            <strong>🎯 उद्देश्य:</strong>
+            एक बार आने वाले ग्राहक को लंबे समय तक जोड़े रखना।
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     READY TO USE LINES
+===================================================== -->
+
+<h2 class="section-title">
+    💬 ग्राहक से बात करने की Ready-to-Use Lines
+    <span></span>
+</h2>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+        <div class="ready-box">
+
+            <h4>👋 स्वागत</h4>
+
+            <div class="quote">
+                “नमस्ते! बताइए, आपको किस तरह का सामान चाहिए?”
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+        <div class="ready-box">
+
+            <h4>🔍 जरूरत समझने के लिए</h4>
+
+            <div class="quote">
+                “आपके लिए सबसे जरूरी चीज़ क्या है—कीमत, क्वालिटी या ब्रांड?”
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+        <div class="ready-box">
+
+            <h4>💡 सुझाव देते समय</h4>
+
+            <div class="quote">
+                “आपकी जरूरत के हिसाब से यह वाला विकल्प भी अच्छा रहेगा।”
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+        <div class="ready-box">
+
+            <h4>❤️ पुराने ग्राहक के लिए</h4>
+
+            <div class="quote">
+                “आप काफी समय से हमारे ग्राहक हैं, इसलिए आपके लिए यह ऑफ़र है।”
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+        <div class="ready-box">
+
+            <h4>📞 Follow-up</h4>
+
+            <div class="quote">
+                “आपने जो सामान लिया था, वह आपके लिए कैसा रहा?”
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+        <div class="ready-box">
+
+            <h4>⭐ Feedback</h4>
+
+            <div class="quote">
+                “हम अपनी सेवा और बेहतर कैसे कर सकते हैं? आपकी राय हमारे लिए महत्वपूर्ण है।”
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MEASURE ENGAGEMENT
+===================================================== -->
+
+<h2 class="section-title">
+    📊 Customer Engagement को कैसे मापें?
+    <span></span>
+</h2>
+
+<p class="section-intro">
+    सिर्फ यह देखना पर्याप्त नहीं है कि कितनी बिक्री हुई।
+    ग्राहक दोबारा आ रहे हैं या नहीं, यह भी नियमित रूप से देखें।
+</p>
+
+<div class="row">
+
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+        <div class="kpi-card">
+            <div class="kpi-icon">🔁</div>
+            <h4>Repeat Customers</h4>
+            <p>कितने ग्राहक दोबारा आए?</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+        <div class="kpi-card">
+            <div class="kpi-icon">⭐</div>
+            <h4>Reviews</h4>
+            <p>ग्राहक रेटिंग कैसी है?</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+        <div class="kpi-card">
+            <div class="kpi-icon">💬</div>
+            <h4>Feedback</h4>
+            <p>कितने ग्राहक सुझाव देते हैं?</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+        <div class="kpi-card">
+            <div class="kpi-icon">🛒</div>
+            <h4>Average Bill</h4>
+            <p>एक ग्राहक कितना खरीदता है?</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+        <div class="kpi-card">
+            <div class="kpi-icon">📱</div>
+            <h4>Engagement</h4>
+            <p>ऑनलाइन प्रतिक्रिया कैसी है?</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-2 mb-4">
+        <div class="kpi-card">
+            <div class="kpi-icon">❤️</div>
+            <h4>Loyalty</h4>
+            <p>कितने ग्राहक नियमित हैं?</p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     7 DAY ACTION PLAN
+===================================================== -->
+
+<h2 class="section-title">
+    🚀 7-Day Customer Engagement Action Plan
+    <span></span>
+</h2>
+
+<div class="action-plan">
+
+    <h2>एक सप्ताह में शुरुआत करें</h2>
+
+    <div class="action-item">
+        <span class="action-number">1</span>
+        ग्राहकों का स्वागत करने का एक अच्छा तरीका तय करें।
+    </div>
+
+    <div class="action-item">
+        <span class="action-number">2</span>
+        सबसे ज्यादा आने वाले ग्राहकों की जरूरत और पसंद नोट करें।
+    </div>
+
+    <div class="action-item">
+        <span class="action-number">3</span>
+        दुकान में 2-3 प्रमुख उत्पादों की जानकारी स्पष्ट रूप से लगाएँ।
+    </div>
+
+    <div class="action-item">
+        <span class="action-number">4</span>
+        पुराने ग्राहकों के लिए एक छोटा loyalty benefit शुरू करें।
+    </div>
+
+    <div class="action-item">
+        <span class="action-number">5</span>
+        WhatsApp पर नए स्टॉक या ऑफ़र की उपयोगी जानकारी साझा करें।
+    </div>
+
+    <div class="action-item">
+        <span class="action-number">6</span>
+        कम से कम कुछ ग्राहकों से feedback लें।
+    </div>
+
+    <div class="action-item">
+        <span class="action-number">7</span>
+        सप्ताह के अंत में देखें—कितने ग्राहक दोबारा आए और क्या सुधार हुआ।
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CUSTOMER DATA & PRIVACY
+===================================================== -->
+
+<div class="privacy-box">
+
+    <h3>🔐 ग्राहक की जानकारी संभालते समय ध्यान रखें</h3>
+
+    <ul class="mb-0">
+
+        <li>
+            केवल वही जानकारी रखें जिसकी वास्तव में जरूरत हो।
+        </li>
+
+        <li>
+            ग्राहक की जानकारी का उपयोग स्पष्ट और उचित उद्देश्य के लिए करें।
+        </li>
+
+        <li>
+            बिना अनुमति के ग्राहक का नंबर या व्यक्तिगत जानकारी
+            दूसरों के साथ साझा न करें।
+        </li>
+
+        <li>
+            WhatsApp या अन्य promotional messages भेजने से पहले
+            ग्राहक की सहमति और उनकी पसंद का सम्मान करें।
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- =====================================================
+     GOLDEN RULES
+===================================================== -->
+
+<h2 class="section-title">
+    ⭐ Customer Engagement के Golden Rules
+    <span></span>
+</h2>
+
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <div class="ready-box text-center">
+            <div class="card-icon">👂</div>
+            <h4>पहले सुनें</h4>
+            <p class="mb-0">
+                ग्राहक की जरूरत समझे बिना प्रोडक्ट न थोपें।
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="ready-box text-center">
+            <div class="card-icon">😊</div>
+            <h4>सम्मान दें</h4>
+            <p class="mb-0">
+                हर ग्राहक के साथ विनम्र व्यवहार करें।
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="ready-box text-center">
+            <div class="card-icon">🎯</div>
+            <h4>Relevant सुझाव</h4>
+            <p class="mb-0">
+                वही ऑफ़र दें जो ग्राहक के लिए उपयोगी हो।
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="ready-box text-center">
+            <div class="card-icon">❤️</div>
+            <h4>रिश्ता बनाएँ</h4>
+            <p class="mb-0">
+                बिक्री के बाद भी ग्राहक से जुड़े रहें।
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONCLUSION / CTA
+===================================================== -->
+
+<div class="cta">
+
+    <h2>💡 याद रखें: ग्राहक सिर्फ बिक्री नहीं है</h2>
+
+    <p>
+        एक अच्छा Customer Engagement सिस्टम ग्राहक को केवल आज की
+        खरीदारी तक सीमित नहीं रखता। वह भरोसा, संतुष्टि और ऐसा अनुभव
+        बनाता है जिससे ग्राहक दोबारा आता है और दूसरों को भी आपकी दुकान
+        की सलाह देता है।
+    </p>
+
+    <p class="mt-3 mb-0">
+        <strong>
+            सुनें • समझें • मदद करें • Follow-up करें • रिश्ता बनाए रखें
+        </strong>
+    </p>
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="container">
+
+        <p class="mb-1">
+            <strong>🤝 Customer Engagement • आपकी दुकान की तरक्की</strong>
+        </p>
+
+        <small>
+            बेहतर अनुभव • मजबूत भरोसा • ज्यादा Repeat Customers
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Bootstrap 4.6.2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+```
