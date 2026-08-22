@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>दुकानदार ग्राहक संवाद</title>
+
+    <!-- Bootstrap 4.6.2 CSS -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Papa Parse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.5.3/papaparse.min.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans Devanagari", sans-serif;
+            background: #f5f7fb;
+            color: #263238;
+            line-height: 1.7;
+        }
+
+        /* --------------------------------
+           Hero
+        -------------------------------- */
+
+        .hero {
+            padding: 65px 20px 80px;
+            color: white;
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(255,255,255,.12),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #064e3b,
+                    #047857,
+                    #0f766e
+                );
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: auto;
+            color: #d1fae5;
+            font-size: 1.1rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 7px 16px;
+            border-radius: 50px;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.25);
+            font-size: .85rem;
+            font-weight: 600;
+        }
+
+        /* --------------------------------
+           Controls
+        -------------------------------- */
+
+        .control-box {
+            margin-top: -35px;
+            position: relative;
+            z-index: 5;
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.09);
+        }
+
+        .control-box label {
+            font-weight: 700;
+            color: #065f46;
+        }
+
+        .form-control,
+        .custom-select {
+            min-height: 45px;
+            border-radius: 8px;
+        }
+
+        /* --------------------------------
+           Stats
+        -------------------------------- */
+
+        .stats-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,.05);
+        }
+
+        .stats-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #047857;
+        }
+
+        .stats-label {
+            color: #64748b;
+            font-size: .9rem;
+        }
+
+        /* --------------------------------
+           Data Cards
+        -------------------------------- */
+
+        .data-card {
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 5px 20px rgba(15,23,42,.06);
+            transition: all .25s ease;
+            overflow: hidden;
+        }
+
+        .data-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(15,23,42,.12);
+        }
+
+        .card-top {
+            padding: 18px 20px;
+            background: linear-gradient(
+                135deg,
+                #ecfdf5,
+                #f0fdfa
+            );
+            border-bottom: 1px solid #d1fae5;
+        }
+
+        .card-body-custom {
+            padding: 22px;
+        }
+
+        .age-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 30px;
+            background: #d1fae5;
+            color: #065f46;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .gender-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 30px;
+            background: #e0f2fe;
+            color: #075985;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .priority-badge {
+            float: right;
+            padding: 5px 10px;
+            border-radius: 30px;
+            background: #fef3c7;
+            color: #92400e;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .scenario {
+            color: #64748b;
+            font-size: .9rem;
+            margin-top: 10px;
+        }
+
+        .scenario strong {
+            color: #334155;
+        }
+
+        .greeting-box {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            border-left: 4px solid #10b981;
+            border-radius: 7px;
+        }
+
+        .greeting-label,
+        .sales-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #065f46;
+            font-size: .78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .greeting-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .sales-box {
+            padding: 15px;
+            background: #ecfdf5;
+            border-radius: 8px;
+        }
+
+        .sales-text {
+            color: #064e3b;
+            font-size: 1.08rem;
+            font-weight: 700;
+        }
+
+        /* --------------------------------
+           Read Button
+        -------------------------------- */
+
+        .read-button {
+            margin-top: 18px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* --------------------------------
+           Empty
+        -------------------------------- */
+
+        .empty-state {
+            padding: 60px 20px;
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            color: #64748b;
+        }
+
+        .empty-state h3 {
+            color: #334155;
+            font-weight: 700;
+        }
+
+        /* --------------------------------
+           Loading
+        -------------------------------- */
+
+        .loading-box {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .spinner-border {
+            color: #10b981;
+        }
+
+        /* --------------------------------
+           Error
+        -------------------------------- */
+
+        .error-box {
+            display: none;
+        }
+
+        /* --------------------------------
+           Footer
+        -------------------------------- */
+
+        footer {
+            margin-top: 60px;
+            padding: 30px 15px;
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        /* --------------------------------
+           Responsive
+        -------------------------------- */
+
+        @media (max-width: 767px) {
+
+            .hero {
+                padding: 45px 18px 65px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .control-box {
+                padding: 18px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     HERO
+========================================== -->
+
+<header class="hero">
+
+    <div class="container text-center">
+
+        <span class="hero-badge">
+            दुकानदारों के लिए स्मार्ट ग्राहक संवाद
+        </span>
+
+        <h1 class="mt-3">
+            ग्राहक से क्या कहें?
+        </h1>
+
+        <p>
+            सही समय पर सही शब्द ग्राहक के अनुभव को बेहतर बना सकते हैं
+            और आपकी बिक्री को बढ़ाने में मदद कर सकते हैं।
+        </p>
+
+    </div>
+
+</header>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="container">
+
+
+    <!-- ======================================
+         FILTERS
+    ======================================= -->
+
+    <section class="control-box">
+
+        <div class="row">
+
+            <!-- Search -->
+
+            <div class="col-lg-5 mb-3 mb-lg-0">
+
+                <label for="searchInput">
+                    खोजें
+                </label>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="form-control"
+                    placeholder="उदाहरण: युवा, त्योहार, नियमित ग्राहक...">
+
+            </div>
+
+
+            <!-- Age Group -->
+
+            <div class="col-lg-3 mb-3 mb-lg-0">
+
+                <label for="ageFilter">
+                    आयु वर्ग
+                </label>
+
+                <select
+                    id="ageFilter"
+                    class="custom-select">
+
+                    <option value="">
+                        सभी आयु वर्ग
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Scenario -->
+
+            <div class="col-lg-3 mb-3 mb-lg-0">
+
+                <label for="scenarioFilter">
+                    परिस्थिति
+                </label>
+
+                <select
+                    id="scenarioFilter"
+                    class="custom-select">
+
+                    <option value="">
+                        सभी परिस्थितियाँ
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Reset -->
+
+            <div class="col-lg-1 d-flex align-items-end">
+
+                <button
+                    id="resetButton"
+                    class="btn btn-outline-success btn-block"
+                    type="button">
+
+                    Reset
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         STATS
+    ======================================= -->
+
+    <section class="py-4">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-3">
+
+                <div class="stats-card">
+
+                    <div
+                        id="totalCount"
+                        class="stats-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stats-label">
+                        कुल संदेश
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <div class="stats-card">
+
+                    <div
+                        id="visibleCount"
+                        class="stats-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stats-label">
+                        दिखाए जा रहे संदेश
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-3">
+
+                <div class="stats-card">
+
+                    <div
+                        id="scenarioCount"
+                        class="stats-number">
+
+                        0
+
+                    </div>
+
+                    <div class="stats-label">
+                        अलग-अलग परिस्थितियाँ
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         ERROR
+    ======================================= -->
+
+    <div
+        id="errorBox"
+        class="alert alert-danger error-box">
+
+        <strong>डेटा लोड नहीं हो सका।</strong>
+
+        <br>
+
+        कृपया Google Sheet URL, publishing settings और internet
+        connection की जाँच करें।
+
+        <div
+            id="errorDetails"
+            class="small mt-2">
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         LOADING
+    ======================================= -->
+
+    <div
+        id="loadingBox"
+        class="loading-box">
+
+        <div
+            class="spinner-border"
+            role="status">
+
+            <span class="sr-only">
+                Loading...
+            </span>
+
+        </div>
+
+        <p class="mt-3">
+            Google Sheet से data लोड हो रहा है...
+        </p>
+
+    </div>
+
+
+    <!-- ======================================
+         DATA
+    ======================================= -->
+
+    <section>
+
+        <div
+            id="dataContainer"
+            class="row">
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- ==========================================
+     FOOTER
+========================================== -->
+
+<footer>
+
+    <div class="container">
+
+        ग्राहक का सम्मान करें • सही समय पर सही बात कहें •
+        अच्छी सेवा को अपनी पहचान बनाएं
+
+    </div>
+
+</footer>
+
+
+<!-- ==========================================
+     Bootstrap JavaScript
+========================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js">
+</script>
+
+
+<script>
+
+/* =====================================================
+   GOOGLE SHEET CONFIGURATION
+===================================================== */
+
+/*
+    IMPORTANT:
+
+    Replace the URL below with your Google Sheet's
+    Published CSV URL.
+
+    Example:
+
+    https://docs.google.com/spreadsheets/d/e/XXXXXXXX/pub
+    ?gid=0&single=true&output=csv
+*/
+
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT7sW_z-Fig0r9KknOWXWlAUKXz8CzETU399oW1_7P0OfE9SQDOkXQfqkkxJqzO-m4GAhf79R0Jiayy/pub?output=csv";
+
+
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
+
+let allData = [];
+let filteredData = [];
+
+
+/* =====================================================
+   DOM ELEMENTS
+===================================================== */
+
+const dataContainer =
+    document.getElementById("dataContainer");
+
+const loadingBox =
+    document.getElementById("loadingBox");
+
+const errorBox =
+    document.getElementById("errorBox");
+
+const errorDetails =
+    document.getElementById("errorDetails");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const ageFilter =
+    document.getElementById("ageFilter");
+
+const scenarioFilter =
+    document.getElementById("scenarioFilter");
+
+const resetButton =
+    document.getElementById("resetButton");
+
+const totalCount =
+    document.getElementById("totalCount");
+
+const visibleCount =
+    document.getElementById("visibleCount");
+
+const scenarioCount =
+    document.getElementById("scenarioCount");
+
+
+/* =====================================================
+   LOAD GOOGLE SHEET
+===================================================== */
+
+function loadGoogleSheet() {
+
+    loadingBox.style.display = "block";
+    errorBox.style.display = "none";
+
+    Papa.parse(SHEET_URL, {
+
+        download: true,
+
+        header: true,
+
+        skipEmptyLines: true,
+
+        transformHeader: function(header) {
+
+            return header.trim();
+
+        },
+
+        complete: function(results) {
+
+            loadingBox.style.display = "none";
+
+            if (results.errors && results.errors.length > 0) {
+
+                console.warn(
+                    "CSV parsing warnings:",
+                    results.errors
+                );
+
+            }
+
+            allData = results.data.filter(function(row) {
+
+                return Object.values(row).some(function(value) {
+
+                    return String(value || "").trim() !== "";
+
+                });
+
+            });
+
+            filteredData = [...allData];
+
+            initializePage();
+
+        },
+
+        error: function(error) {
+
+            loadingBox.style.display = "none";
+
+            errorBox.style.display = "block";
+
+            errorDetails.textContent =
+                error.message || "Unknown error";
+
+            console.error(error);
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   INITIALIZE PAGE
+===================================================== */
+
+function initializePage() {
+
+    totalCount.textContent = allData.length;
+
+    populateAgeFilter();
+
+    populateScenarioFilter();
+
+    updateScenarioCount();
+
+    renderData(allData);
+
+}
+
+
+/* =====================================================
+   GET COLUMN VALUE
+===================================================== */
+
+function getValue(row, possibleNames) {
+
+    for (let i = 0; i < possibleNames.length; i++) {
+
+        const name = possibleNames[i];
+
+        if (
+            row[name] !== undefined &&
+            row[name] !== null
+        ) {
+
+            return String(row[name]).trim();
+
+        }
+
+    }
+
+    return "";
+
+}
+
+
+/* =====================================================
+   POPULATE AGE FILTER
+===================================================== */
+
+function populateAgeFilter() {
+
+    const values = allData
+        .map(function(row) {
+
+            return getValue(row, [
+                "Age Group",
+                "AgeGroup",
+                "Age",
+                "आयु वर्ग"
+            ]);
+
+        })
+        .filter(Boolean);
+
+    const uniqueValues =
+        [...new Set(values)].sort();
+
+    ageFilter.innerHTML =
+        '<option value="">सभी आयु वर्ग</option>';
+
+    uniqueValues.forEach(function(value) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = value;
+
+        option.textContent = value;
+
+        ageFilter.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   POPULATE SCENARIO FILTER
+===================================================== */
+
+function populateScenarioFilter() {
+
+    const values = allData
+        .map(function(row) {
+
+            return getValue(row, [
+                "Scenario",
+                "Situation",
+                "परिस्थिति"
+            ]);
+
+        })
+        .filter(Boolean);
+
+    const uniqueValues =
+        [...new Set(values)].sort();
+
+    scenarioFilter.innerHTML =
+        '<option value="">सभी परिस्थितियाँ</option>';
+
+    uniqueValues.forEach(function(value) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = value;
+
+        option.textContent = value;
+
+        scenarioFilter.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   FILTER DATA
+===================================================== */
+
+function filterData() {
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    const selectedAge =
+        ageFilter.value;
+
+    const selectedScenario =
+        scenarioFilter.value;
+
+
+    filteredData = allData.filter(function(row) {
+
+        const age = getValue(row, [
+            "Age Group",
+            "AgeGroup",
+            "Age",
+            "आयु वर्ग"
+        ]);
+
+        const scenario = getValue(row, [
+            "Scenario",
+            "Situation",
+            "परिस्थिति"
+        ]);
+
+        const searchableText =
+            Object.values(row)
+                .join(" ")
+                .toLowerCase();
+
+
+        const matchesSearch =
+            !search ||
+            searchableText.includes(search);
+
+
+        const matchesAge =
+            !selectedAge ||
+            age === selectedAge;
+
+
+        const matchesScenario =
+            !selectedScenario ||
+            scenario === selectedScenario;
+
+
+        return (
+            matchesSearch &&
+            matchesAge &&
+            matchesScenario
+        );
+
+    });
+
+
+    renderData(filteredData);
+
+}
+
+
+/* =====================================================
+   RENDER DATA
+===================================================== */
+
+function renderData(data) {
+
+    dataContainer.innerHTML = "";
+
+    visibleCount.textContent = data.length;
+
+
+    if (data.length === 0) {
+
+        dataContainer.innerHTML = `
+
+            <div class="col-12">
+
+                <div class="empty-state">
+
+                    <h3>
+                        कोई संदेश नहीं मिला
+                    </h3>
+
+                    <p>
+                        कृपया search या filters बदलकर देखें।
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    data.forEach(function(row, index) {
+
+        const id =
+            getValue(row, [
+                "ID",
+                "Id",
+                "id"
+            ]) || (index + 1);
+
+        const age =
+            getValue(row, [
+                "Age Group",
+                "AgeGroup",
+                "Age",
+                "आयु वर्ग"
+            ]) || "सभी";
+
+        const gender =
+            getValue(row, [
+                "Gender",
+                "लिंग"
+            ]);
+
+        const scenario =
+            getValue(row, [
+                "Scenario",
+                "Situation",
+                "परिस्थिति"
+            ]) || "सामान्य परिस्थिति";
+
+        const greeting =
+            getValue(row, [
+                "Greeting",
+                "Welcome",
+                "स्वागत"
+            ]);
+
+        const salesLine =
+            getValue(row, [
+                "Sales Line",
+                "SalesLine",
+                "Line",
+                "बिक्री लाइन"
+            ]);
+
+        const priority =
+            getValue(row, [
+                "Priority",
+                "प्राथमिकता"
+            ]);
+
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "col-md-6 col-lg-4 mb-4";
+
+
+        card.innerHTML = `
+
+            <div class="data-card">
+
+                <div class="card-top">
+
+                    <span class="age-badge">
+                        ${escapeHtml(age)}
+                    </span>
+
+                    ${
+                        gender
+                        ?
+                        `
+                        <span class="gender-badge ml-1">
+                            ${escapeHtml(gender)}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+                    ${
+                        priority
+                        ?
+                        `
+                        <span class="priority-badge">
+                            ⭐ ${escapeHtml(priority)}
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+                    <div class="scenario">
+
+                        <strong>
+                            परिस्थिति:
+                        </strong>
+
+                        ${escapeHtml(scenario)}
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body-custom">
+
+
+                    ${
+                        greeting
+                        ?
+                        `
+                        <div class="greeting-box">
+
+                            <span class="greeting-label">
+                                ग्राहक से कहें
+                            </span>
+
+                            <div class="greeting-text">
+                                ${escapeHtml(greeting)}
+                            </div>
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    ${
+                        salesLine
+                        ?
+                        `
+                        <div class="sales-box">
+
+                            <span class="sales-label">
+                                बिक्री के लिए सुझाव
+                            </span>
+
+                            <div class="sales-text">
+                                ${escapeHtml(salesLine)}
+                            </div>
+
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <button
+                        type="button"
+                        class="btn btn-success read-button"
+                        onclick="readCard(this)">
+
+                        🔊 पढ़कर सुनाएँ
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        dataContainer.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   READ A CARD
+===================================================== */
+
+function readCard(button) {
+
+    if (!("speechSynthesis" in window)) {
+
+        alert(
+            "आपके browser में Text-to-Speech उपलब्ध नहीं है।"
+        );
+
+        return;
+
+    }
+
+
+    const card =
+        button.closest(".data-card");
+
+
+    const greeting =
+        card.querySelector(".greeting-text");
+
+
+    const sales =
+        card.querySelector(".sales-text");
+
+
+    let text = "";
+
+
+    if (greeting) {
+
+        text += greeting.innerText + ". ";
+
+    }
+
+
+    if (sales) {
+
+        text += sales.innerText;
+
+    }
+
+
+    if (!text.trim()) {
+
+        return;
+
+    }
+
+
+    speechSynthesis.cancel();
+
+
+    const utterance =
+        new SpeechSynthesisUtterance(text);
+
+
+    const voices =
+        speechSynthesis.getVoices();
+
+
+    const hindiVoice =
+        voices.find(function(voice) {
+
+            return voice.lang
+                .toLowerCase()
+                .startsWith("hi");
+
+        });
+
+
+    if (hindiVoice) {
+
+        utterance.voice = hindiVoice;
+        utterance.lang = hindiVoice.lang;
+
+    } else {
+
+        utterance.lang = "hi-IN";
+
+    }
+
+
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+
+
+    speechSynthesis.speak(utterance);
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+searchInput.addEventListener(
+    "input",
+    filterData
+);
+
+
+/* =====================================================
+   AGE FILTER
+===================================================== */
+
+ageFilter.addEventListener(
+    "change",
+    filterData
+);
+
+
+/* =====================================================
+   SCENARIO FILTER
+===================================================== */
+
+scenarioFilter.addEventListener(
+    "change",
+    filterData
+);
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+resetButton.addEventListener(
+    "click",
+    function() {
+
+        searchInput.value = "";
+
+        ageFilter.value = "";
+
+        scenarioFilter.value = "";
+
+        filteredData = [...allData];
+
+        renderData(filteredData);
+
+    }
+);
+
+
+/* =====================================================
+   SCENARIO COUNT
+===================================================== */
+
+function updateScenarioCount() {
+
+    const scenarios =
+        allData
+            .map(function(row) {
+
+                return getValue(row, [
+                    "Scenario",
+                    "Situation",
+                    "परिस्थिति"
+                ]);
+
+            })
+            .filter(Boolean);
+
+
+    scenarioCount.textContent =
+        new Set(scenarios).size;
+
+}
+
+
+/* =====================================================
+   LOAD VOICES
+===================================================== */
+
+if ("speechSynthesis" in window) {
+
+    speechSynthesis.onvoiceschanged =
+        function() {
+
+            speechSynthesis.getVoices();
+
+        };
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadGoogleSheet();
+
+</script>
+
+</body>
+
+</html>
