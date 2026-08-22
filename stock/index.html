@@ -62,9 +62,9 @@
 <header class="page-header">
     <div class="container">
         <h1 class="h3 mb-1">Stock List</h1>
-        <p class="mb-0 text-light">
-            All records from the spreadsheet
-        </p>
+<!--        <p class="mb-0 text-light">-->
+<!--            All records from the spreadsheet-->
+<!--        </p>-->
     </div>
 </header>
 
@@ -89,12 +89,36 @@
              style="display:none;">
         </div>
 
+        <!-- Column toggles -->
+        <div id="columnToggles"
+             class="mb-3"
+             style="display:none;">
+            <strong class="d-block mb-2">Show / hide columns:</strong>
+            <div id="columnToggleList"
+                 class="d-flex flex-wrap"></div>
+        </div>
+
         <!-- Search -->
         <div id="searchWrapper" class="mb-3" style="display:none;">
-            <input type="text"
-                   id="searchInput"
-                   class="form-control"
-                   placeholder="Search across all columns...">
+            <div class="d-flex flex-wrap align-items-center">
+                <input type="text"
+                       id="searchInput"
+                       class="form-control mr-2 mb-2"
+                       style="max-width:320px;"
+                       placeholder="Search across all columns...">
+
+                <button type="button"
+                        id="restockBtn"
+                        class="btn btn-warning mb-2 mr-2">
+                    Show restock needed
+                </button>
+
+                <button type="button"
+                        id="editModeBtn"
+                        class="btn btn-outline-primary mb-2">
+                    Enable edit mode
+                </button>
+            </div>
         </div>
 
         <!-- Table -->
@@ -142,7 +166,40 @@
 
     const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT7sW_z-Fig0r9KknOWXWlAUKXz8CzETU399oW1_7P0OfE9SQDOkXQfqkkxJqzO-m4GAhf79R0Jiayy/pub?output=csv";
 
+    /*
+     * Google Apps Script Web App URL used to WRITE
+     * updates back to the sheet.
+     *
+     * A published CSV link is read-only, so saving
+     * edits requires a deployed Apps Script endpoint.
+     * See the setup instructions provided separately.
+     *
+     * Replace this with your own /exec URL.
+     */
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxhfJJ82ikSUnEqD8YbR88mSXyLA3LSg2Sm4XcBz11UMCg0r2Y8KzTjlihnATgDWhyipw/exec";
     let sheetData = [];
+
+    /*
+     * Columns that are hidden by default.
+     * Edit this list to control which columns start hidden.
+     * Their values appear only when the checkbox is ticked.
+     */
+    const DEFAULT_HIDDEN_COLUMNS = ["Alert", "Stock"];
+
+    /*
+     * Set of column names currently hidden.
+     */
+    let hiddenColumns = new Set();
+
+    /*
+     * Whether the restock-only filter is active.
+     */
+    let restockOnly = false;
+
+    /*
+     * Whether inline edit mode is active.
+     */
+    let editMode = false;
 
 
     async function loadSheetData() {
@@ -171,14 +228,23 @@
                 );
             }
 
+            buildColumnToggles();
             createTable(sheetData);
 
             loading.style.display = "none";
             tableWrapper.style.display = "block";
             searchWrapper.style.display = "block";
 
+            document.getElementById("columnToggles").style.display = "block";
+
             document.getElementById("searchInput")
                 .addEventListener("input", handleSearch);
+
+            document.getElementById("restockBtn")
+                .addEventListener("click", toggleRestock);
+
+            document.getElementById("editModeBtn")
+                .addEventListener("click", toggleEditMode);
 
         } catch (err) {
 
@@ -192,20 +258,178 @@
     }
 
 
-    function handleSearch(event) {
+    function buildColumnToggles() {
 
-        const term = event.target.value.trim().toLowerCase();
+        const list = document.getElementById("columnToggleList");
 
-        if (term === "") {
-            createTable(sheetData);
-            return;
+        list.innerHTML = "";
+
+        const columns = Object.keys(sheetData[0]);
+
+        /*
+         * Start with the configured columns hidden.
+         * Matching is case-insensitive so header casing
+         * does not need to match exactly.
+         */
+        const hiddenLower = DEFAULT_HIDDEN_COLUMNS.map(function(name) {
+            return name.toLowerCase();
+        });
+
+        hiddenColumns = new Set(
+            columns.filter(function(column) {
+                return hiddenLower.indexOf(column.toLowerCase()) !== -1;
+            })
+        );
+
+        columns.forEach(function(column) {
+
+            const wrapper = document.createElement("div");
+            wrapper.className = "form-check mr-3 mb-2";
+
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.className = "form-check-input";
+            input.id = "toggle-" + column;
+            input.checked = !hiddenColumns.has(column);
+
+            input.addEventListener("change", function() {
+
+                if (input.checked) {
+                    hiddenColumns.delete(column);
+                } else {
+                    hiddenColumns.add(column);
+                }
+
+                /*
+                 * Re-render using the current search term.
+                 */
+                handleSearch({
+                    target: document.getElementById("searchInput")
+                });
+            });
+
+            const label = document.createElement("label");
+            label.className = "form-check-label";
+            label.setAttribute("for", input.id);
+            label.textContent = column;
+
+            wrapper.appendChild(input);
+            wrapper.appendChild(label);
+
+            list.appendChild(wrapper);
+        });
+    }
+
+
+    function handleSearch() {
+
+        applyFilters();
+    }
+
+
+    function toggleRestock() {
+
+        restockOnly = !restockOnly;
+
+        const button = document.getElementById("restockBtn");
+
+        if (restockOnly) {
+            button.classList.remove("btn-warning");
+            button.classList.add("btn-success");
+            button.textContent = "Show all items";
+        } else {
+            button.classList.remove("btn-success");
+            button.classList.add("btn-warning");
+            button.textContent = "Show restock needed";
         }
 
-        const filtered = sheetData.filter(function(row) {
-            return Object.values(row).some(function(value) {
-                return String(value).toLowerCase().includes(term);
+        applyFilters();
+    }
+
+
+    function toggleEditMode() {
+
+        editMode = !editMode;
+
+        const button = document.getElementById("editModeBtn");
+
+        if (editMode) {
+            button.classList.remove("btn-outline-primary");
+            button.classList.add("btn-primary");
+            button.textContent = "Disable edit mode";
+        } else {
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-outline-primary");
+            button.textContent = "Enable edit mode";
+        }
+
+        applyFilters();
+    }
+
+
+    /*
+     * Find the actual column name matching the given
+     * label, ignoring case. Returns null if not found.
+     */
+    function findColumn(label) {
+
+        if (sheetData.length === 0) {
+            return null;
+        }
+
+        const target = label.toLowerCase();
+
+        return Object.keys(sheetData[0]).find(function(column) {
+            return column.toLowerCase() === target;
+        }) || null;
+    }
+
+
+    /*
+     * Apply the search term and restock filter together.
+     */
+    function applyFilters() {
+
+        const term = document.getElementById("searchInput")
+            .value.trim().toLowerCase();
+
+        let filtered = sheetData;
+
+        /*
+         * Restock filter: Stock < Alert
+         */
+        if (restockOnly) {
+
+            const stockColumn = findColumn("Stock");
+            const alertColumn = findColumn("Alert");
+
+            if (stockColumn && alertColumn) {
+
+                filtered = filtered.filter(function(row) {
+
+                    const stock = parseFloat(row[stockColumn]);
+                    const alert = parseFloat(row[alertColumn]);
+
+                    if (isNaN(stock) || isNaN(alert)) {
+                        return false;
+                    }
+
+                    return stock < alert;
+                });
+            }
+        }
+
+        /*
+         * Search filter across all columns.
+         */
+        if (term !== "") {
+
+            filtered = filtered.filter(function(row) {
+                return Object.values(row).some(function(value) {
+                    return String(value).toLowerCase().includes(term);
+                });
             });
-        });
+        }
 
         createTable(filtered, filtered.length === 0);
     }
@@ -274,9 +498,12 @@
         body.innerHTML = "";
 
         /*
-         * Get column names from the full dataset.
+         * Get column names from the full dataset,
+         * excluding any that are currently hidden.
          */
-        const columns = Object.keys(sheetData[0]);
+        const columns = Object.keys(sheetData[0]).filter(function(column) {
+            return !hiddenColumns.has(column);
+        });
 
 
         /*
@@ -292,6 +519,16 @@
 
         });
 
+        /*
+         * Extra header cell for edit actions.
+         */
+        if (editMode) {
+
+            const actionsTh = document.createElement("th");
+            actionsTh.textContent = "Actions";
+            header.appendChild(actionsTh);
+        }
+
 
         /*
          * Show a message when there are no matches.
@@ -301,7 +538,7 @@
             const tr = document.createElement("tr");
             const td = document.createElement("td");
 
-            td.colSpan = columns.length;
+            td.colSpan = columns.length + (editMode ? 1 : 0);
             td.className = "text-center text-muted";
             td.textContent = "No matching records found.";
 
@@ -332,10 +569,197 @@
 
             });
 
+            /*
+             * Add an edit (pencil) button when edit mode is on.
+             */
+            if (editMode) {
+
+                const actionTd = document.createElement("td");
+                actionTd.className = "text-center";
+
+                const editButton = document.createElement("button");
+                editButton.type = "button";
+                editButton.className = "btn btn-sm btn-outline-secondary";
+                editButton.title = "Edit row";
+                editButton.innerHTML = "&#9998;";
+
+                editButton.addEventListener("click", function() {
+                    startRowEdit(tr, row, columns);
+                });
+
+                actionTd.appendChild(editButton);
+                tr.appendChild(actionTd);
+            }
+
             body.appendChild(tr);
 
         });
 
+    }
+
+
+    /*
+     * Turn a row's visible cells into editable inputs and
+     * swap the pencil button for Save / Cancel controls.
+     */
+    function startRowEdit(tr, row, columns) {
+
+        const cells = tr.querySelectorAll("td");
+
+        /*
+         * Replace each data cell with an input.
+         */
+        columns.forEach(function(column, index) {
+
+            const td = cells[index];
+
+            const input = document.createElement("input");
+            input.type = "text";
+            input.className = "form-control form-control-sm";
+            input.value = row[column] !== undefined ? row[column] : "";
+            input.dataset.column = column;
+
+            td.innerHTML = "";
+            td.appendChild(input);
+        });
+
+        /*
+         * Last cell holds the action buttons.
+         */
+        const actionTd = cells[cells.length - 1];
+        actionTd.innerHTML = "";
+
+        const saveButton = document.createElement("button");
+        saveButton.type = "button";
+        saveButton.className = "btn btn-sm btn-success mr-1";
+        saveButton.textContent = "Save";
+
+        const cancelButton = document.createElement("button");
+        cancelButton.type = "button";
+        cancelButton.className = "btn btn-sm btn-secondary";
+        cancelButton.textContent = "Cancel";
+
+        saveButton.addEventListener("click", function() {
+            saveRowEdit(tr, row, columns, saveButton, cancelButton);
+        });
+
+        cancelButton.addEventListener("click", function() {
+            applyFilters();
+        });
+
+        actionTd.appendChild(saveButton);
+        actionTd.appendChild(cancelButton);
+    }
+
+
+    /*
+     * Collect edited values, update the sheet via the
+     * Apps Script endpoint, then refresh the table.
+     */
+    async function saveRowEdit(tr, row, columns, saveButton, cancelButton) {
+
+        const cells = tr.querySelectorAll("td");
+        const updates = {};
+
+        columns.forEach(function(column, index) {
+
+            const input = cells[index].querySelector("input");
+
+            if (input) {
+                updates[column] = input.value;
+            }
+        });
+
+        /*
+         * Disable buttons while saving.
+         */
+        saveButton.disabled = true;
+        cancelButton.disabled = true;
+        saveButton.textContent = "Saving...";
+
+        try {
+
+            await updateSheetRow(row, updates);
+
+            /*
+             * Apply changes locally so the UI stays in sync.
+             */
+            Object.keys(updates).forEach(function(column) {
+                row[column] = updates[column];
+            });
+
+        } catch (err) {
+
+            alert(
+                "Could not save changes: " +
+                (err.message || "Unknown error")
+            );
+
+        } finally {
+
+            /*
+             * Re-render (also restores the pencil button).
+             */
+            applyFilters();
+        }
+    }
+
+
+    /*
+     * Send a single row update to the Apps Script Web App.
+     *
+     * Payload:
+     * {
+     *   "rowNumber": <sheet row number>,
+     *   "values": { "Column": "Value", ... }
+     * }
+     */
+    async function updateSheetRow(row, updates) {
+
+        if (
+            !APPS_SCRIPT_URL ||
+            APPS_SCRIPT_URL.indexOf("PASTE_YOUR") === 0
+        ) {
+            throw new Error(
+                "Apps Script URL is not configured. " +
+                "See the setup instructions to enable saving."
+            );
+        }
+
+        /*
+         * Sheet row number: data index + 2
+         * (+1 for the header row, +1 for 1-based rows).
+         */
+        const rowNumber = sheetData.indexOf(row) + 2;
+
+        const response = await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            /*
+             * text/plain avoids a CORS preflight, which
+             * Apps Script Web Apps do not handle.
+             */
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                rowNumber: rowNumber,
+                values: updates
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error("Server returned " + response.status);
+        }
+
+        const result = await response.json();
+
+        if (!result || result.status !== "success") {
+            throw new Error(
+                (result && result.message) || "Update failed."
+            );
+        }
+
+        return result;
     }
 
 
