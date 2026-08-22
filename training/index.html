@@ -4,42 +4,157 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
     <title>Bootstrap 101 Template</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Bootstrap 4 -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-GjZLeJb5q6m2tW5p5x5w5x5w5x5w5x5w5x5w5x5w5x5w5x5w5x5w5x5w5x5w5x5"
+      crossorigin="anonymous">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      h1 {
+        margin: 30px 0;
+        font-weight: 600;
+      }
+
+      .training-item {
+        margin-bottom: 30px;
+      }
+
+      .training-item a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 180px;
+        padding: 20px 10px;
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        color: #212529;
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+      }
+
+      .training-item a:hover {
+        text-decoration: none;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .training-item img {
+        width: 30%;
+        max-width: 100px;
+        height: auto;
+        margin-bottom: 15px;
+      }
+
+      @media (max-width: 575.98px) {
+        h1 {
+          margin: 20px 0;
+          font-size: 2rem;
+        }
+
+        .training-item {
+          margin-bottom: 20px;
+        }
+
+        .training-item a {
+          min-height: 160px;
+        }
+
+        .training-item img {
+          width: 25%;
+        }
+      }
+    </style>
   </head>
+
   <body>
+
     <h1 class="text-center">Training!</h1>
 
     <div class="container">
-  <div class="row text-center">
-    <div class="col-sm-3"><a href="customer-engazement.html"><img src="images/goodwill.png" width="30%">Customer Engagement</a> </div>
-    <div class="col-sm-3"><a href="no-udhar.html"><img src="images/broken-bank.png" width="30%"> No Udhar</a></div>
-    <div class="col-sm-3"><a href="sales.html"><img src="images/sales.png" width="30%">Sales</a></div>
-<div class="col-sm-3"><a href="customer-qa.html"><img src="images/sales.png" width="30%">Customer Questions</a></div>
-    <div class="col-sm-3"><a href="mental-strength.html"><img src="images/sales.png" width="30%">Shop Keeper Mind Strength</a></div>
+      <div class="row text-center">
 
-    <div class="col-sm-3"><a href="routine.html"><img src="images/routine.png" width="30%"> Routine</a></div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="customer-engazement.html">
+            <img src="images/goodwill.png" width="30%" alt="">
+            Customer Engagement
+          </a>
+        </div>
 
-<div class="col-sm-3"><a href="customer-respect.html"><img src="images/routine.png" width="30%">Customer Respect</a></div>
-    
-    <div class="col-sm-3">Column 4</div>
-  </div>
-</div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="no-udhar.html">
+            <img src="images/broken-bank.png" width="30%" alt="">
+            No Udhar
+          </a>
+        </div>
 
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="sales.html">
+            <img src="images/sales.png" width="30%" alt="">
+            Sales
+          </a>
+        </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="customer-qa.html">
+            <img src="images/sales.png" width="30%" alt="">
+            Customer Questions
+          </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="mental-strength.html">
+            <img src="images/sales.png" width="30%" alt="">
+            Shop Keeper Mind Strength
+          </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="routine.html">
+            <img src="images/routine.png" width="30%" alt="">
+            Routine
+          </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <a href="customer-respect.html">
+            <img src="images/routine.png" width="30%" alt="">
+            Customer Respect
+          </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 training-item">
+          <div class="h-100 d-flex align-items-center justify-content-center">
+            Column 4
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap 4 -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npqkL1d5n5l5e5x5x5x5x5x5x5x5x5x5x5x5"
+      crossorigin="anonymous">
+    </script>
+
   </body>
 </html>
