@@ -54,17 +54,65 @@
         .error {
             padding: 20px;
         }
+
+        /* Clear button effects */
+        .clear-btn {
+            transition: all 0.2s ease-in-out;
+            animation: clearFadeIn 0.25s ease-in-out;
+        }
+
+        .clear-btn:hover {
+            background-color: #17a2b8;
+            color: #fff;
+            transform: translateY(-1px) scale(1.05);
+            box-shadow: 0 3px 10px rgba(23, 162, 184, 0.35);
+        }
+
+        .clear-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 1px 3px rgba(23, 162, 184, 0.35);
+        }
+
+        @keyframes clearFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 
 <body>
 
 <header class="page-header">
-    <div class="container">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between">
         <h1 class="h3 mb-1">Stock List</h1>
-<!--        <p class="mb-0 text-light">-->
-<!--            All records from the spreadsheet-->
-<!--        </p>-->
+
+        <div id="headerActions"
+             class="d-flex flex-wrap align-items-center"
+             style="display:none !important;">
+
+            <button type="button"
+                    id="columnsToggleBtn"
+                    class="btn btn-outline-light mb-2 mr-2">Columns
+            </button>
+
+            <button type="button"
+                    id="restockBtn"
+                    class="btn btn-warning mb-2 mr-2">
+                Show restock needed
+            </button>
+
+            <button type="button"
+                    id="editModeBtn"
+                    class="btn btn-outline-light mb-2">
+                Enable edit mode
+            </button>
+        </div>
     </div>
 </header>
 
@@ -89,18 +137,21 @@
              style="display:none;">
         </div>
 
-        <!-- Column toggles -->
+        <!-- Column toggles (collapsible) -->
         <div id="columnToggles"
-             class="mb-3"
+             class="mb-3 border rounded"
              style="display:none;">
-            <strong class="d-block mb-2">Show / hide columns:</strong>
-            <div id="columnToggleList"
-                 class="d-flex flex-wrap"></div>
+            <div class="p-3" style="background:#f8f9fa;">
+                <strong class="d-block mb-2">Show / hide columns:</strong>
+                <div id="columnToggleList"
+                     class="d-flex flex-wrap"></div>
+            </div>
         </div>
 
-        <!-- Search -->
+        <!-- Search + category filters (inline) -->
         <div id="searchWrapper" class="mb-3" style="display:none;">
             <div class="d-flex flex-wrap align-items-center">
+
                 <input type="text"
                        id="searchInput"
                        class="form-control mr-2 mb-2"
@@ -108,16 +159,20 @@
                        placeholder="Search across all columns...">
 
                 <button type="button"
-                        id="restockBtn"
-                        class="btn btn-warning mb-2 mr-2">
-                    Show restock needed
+                        id="clearSearchBtn"
+                        class="btn btn-outline-info mb-2 clear-btn"
+                        style="display:none; margin-right:30px;">
+                    &#10005; Clear
                 </button>
 
-                <button type="button"
-                        id="editModeBtn"
-                        class="btn btn-outline-primary mb-2">
-                    Enable edit mode
-                </button>
+                <!-- Category filters, right after the Clear button -->
+                <div id="categoryFilters"
+                     class="d-flex flex-wrap align-items-center"
+                     style="display:none;">
+                    <div id="categoryList"
+                         class="d-flex flex-wrap"></div>
+                </div>
+
             </div>
         </div>
 
@@ -187,6 +242,14 @@
     const DEFAULT_HIDDEN_COLUMNS = ["Alert", "Stock"];
 
     /*
+     * Columns that must NOT be editable in edit mode.
+     * Matching is case-insensitive. Cells for these
+     * columns stay as plain text and are never sent
+     * in an update.
+     */
+    const NON_EDITABLE_COLUMNS = ["Item No.", "Item Name", "Category"];
+
+    /*
      * Set of column names currently hidden.
      */
     let hiddenColumns = new Set();
@@ -229,16 +292,24 @@
             }
 
             buildColumnToggles();
+            buildCategoryButtons();
             createTable(sheetData);
 
             loading.style.display = "none";
             tableWrapper.style.display = "block";
             searchWrapper.style.display = "block";
 
-            document.getElementById("columnToggles").style.display = "block";
+            document.getElementById("headerActions")
+                .style.setProperty("display", "flex", "important");
+
+            document.getElementById("columnsToggleBtn")
+                .addEventListener("click", toggleColumnsPanel);
 
             document.getElementById("searchInput")
                 .addEventListener("input", handleSearch);
+
+            document.getElementById("clearSearchBtn")
+                .addEventListener("click", clearSearch);
 
             document.getElementById("restockBtn")
                 .addEventListener("click", toggleRestock);
@@ -323,6 +394,129 @@
 
     function handleSearch() {
 
+        highlightActiveCategory(null);
+
+        updateClearButton();
+
+        applyFilters();
+    }
+
+
+    /*
+     * Show the Clear button only when the search box
+     * has some text; hide it otherwise.
+     */
+    function updateClearButton() {
+
+        const term = document.getElementById("searchInput").value.trim();
+        const button = document.getElementById("clearSearchBtn");
+
+        button.style.display = term === "" ? "none" : "inline-block";
+    }
+
+
+    /*
+     * Build small buttons from the unique values of the
+     * Category column. Clicking one puts it into the
+     * search box and filters the table.
+     */
+    function buildCategoryButtons() {
+
+        const wrapper = document.getElementById("categoryFilters");
+        const list = document.getElementById("categoryList");
+
+        list.innerHTML = "";
+
+        const categoryColumn = findColumn("Category");
+
+        /*
+         * No Category column? Hide the section.
+         */
+        if (!categoryColumn) {
+            wrapper.style.display = "none";
+            return;
+        }
+
+        /*
+         * Collect unique, non-empty category values.
+         */
+        const categories = [];
+
+        sheetData.forEach(function(row) {
+
+            const value = (row[categoryColumn] || "").trim();
+
+            if (value !== "" && categories.indexOf(value) === -1) {
+                categories.push(value);
+            }
+        });
+
+        categories.sort();
+
+        if (categories.length === 0) {
+            wrapper.style.display = "none";
+            return;
+        }
+
+        categories.forEach(function(category) {
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "btn btn-sm btn-outline-primary mr-2 mb-2";
+            button.textContent = category;
+
+            button.addEventListener("click", function() {
+
+                const searchInput = document.getElementById("searchInput");
+                searchInput.value = category;
+
+                highlightActiveCategory(button);
+
+                updateClearButton();
+
+                applyFilters();
+            });
+
+            list.appendChild(button);
+        });
+
+        wrapper.style.display = "flex";
+    }
+
+
+    /*
+     * Visually mark the selected category button.
+     */
+    function highlightActiveCategory(activeButton) {
+
+        const buttons = document
+            .getElementById("categoryList")
+            .querySelectorAll("button");
+
+        buttons.forEach(function(button) {
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-outline-primary");
+        });
+
+        if (activeButton) {
+            activeButton.classList.remove("btn-outline-primary");
+            activeButton.classList.add("btn-primary");
+        }
+    }
+
+
+    /*
+     * Clear the search box, reset category highlighting
+     * and show all rows again.
+     */
+    function clearSearch() {
+
+        document.getElementById("searchInput").value = "";
+
+        highlightActiveCategory(null);
+
+        updateClearButton();
+
         applyFilters();
     }
 
@@ -354,16 +548,51 @@
         const button = document.getElementById("editModeBtn");
 
         if (editMode) {
-            button.classList.remove("btn-outline-primary");
-            button.classList.add("btn-primary");
+            button.classList.remove("btn-outline-light");
+            button.classList.add("btn-light");
             button.textContent = "Disable edit mode";
         } else {
-            button.classList.remove("btn-primary");
-            button.classList.add("btn-outline-primary");
+            button.classList.remove("btn-light");
+            button.classList.add("btn-outline-light");
             button.textContent = "Enable edit mode";
         }
 
         applyFilters();
+    }
+
+
+    /*
+     * Flip the collapsible "Show / hide columns" panel
+     * open or closed and rotate the arrow indicator.
+     */
+    function toggleColumnsPanel() {
+
+        const panel = document.getElementById("columnToggles");
+        const arrow = document.getElementById("columnsToggleArrow");
+
+        const isOpen = panel.style.display === "block";
+
+        if (isOpen) {
+            panel.style.display = "none";
+            arrow.innerHTML = "&#9662;"; // down arrow
+        } else {
+            panel.style.display = "block";
+            arrow.innerHTML = "&#9652;"; // up arrow
+        }
+    }
+
+
+    /*
+     * Return true when a column is in the hardcoded
+     * non-editable list (case-insensitive).
+     */
+    function isNonEditable(column) {
+
+        const target = column.toLowerCase();
+
+        return NON_EDITABLE_COLUMNS.some(function(name) {
+            return name.toLowerCase() === target;
+        });
     }
 
 
@@ -612,6 +841,16 @@
         columns.forEach(function(column, index) {
 
             const td = cells[index];
+
+            /*
+             * Leave non-editable columns as plain text.
+             */
+            if (isNonEditable(column)) {
+                td.textContent =
+                    row[column] !== undefined ? row[column] : "";
+                td.classList.add("text-muted");
+                return;
+            }
 
             const input = document.createElement("input");
             input.type = "text";
