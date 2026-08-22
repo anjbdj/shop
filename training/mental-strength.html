@@ -1008,14 +1008,53 @@
 
     function getPageText() {
         return Array.from(document.querySelectorAll('header, main, footer'))
-            .map((section) => section.innerText.trim())
+            .map((section) => section.innerText)
             .filter(Boolean)
             .join('. ')
-            .replace(/\s+/g, ' ');
+            .replace(/\s+/g, ' ')
+            .replace(/\s+([।!?])/g, '$1')
+            .trim();
     }
 
     function splitIntoChunks(text) {
-        return text.match(/[^।!?]+[।!?]+|[^।!?]+$/g) || [text];
+        const sentences = text.match(/[^।!?]+[।!?]+|[^।!?]+$/g) || [text];
+        const chunks = [];
+
+        sentences.forEach((sentence) => {
+            for (let start = 0; start < sentence.length; start += 220) {
+                chunks.push(sentence.slice(start, start + 220).trim());
+            }
+        });
+
+        return chunks.filter(Boolean);
+    }
+
+    function getHindiVoice() {
+        const voices = speech.getVoices();
+        return voices.find((voice) => voice.lang.toLowerCase() === 'hi-in')
+            || voices.find((voice) => voice.lang.toLowerCase().startsWith('hi'));
+    }
+
+    function waitForHindiVoice() {
+        return new Promise((resolve) => {
+            const hindiVoice = getHindiVoice();
+
+            if (hindiVoice || speech.getVoices().length > 0) {
+                resolve(hindiVoice);
+                return;
+            }
+
+            const handleVoicesChanged = () => {
+                speech.removeEventListener('voiceschanged', handleVoicesChanged);
+                resolve(getHindiVoice());
+            };
+
+            speech.addEventListener('voiceschanged', handleVoicesChanged);
+            window.setTimeout(() => {
+                speech.removeEventListener('voiceschanged', handleVoicesChanged);
+                resolve(getHindiVoice());
+            }, 1000);
+        });
     }
 
     function updateReadingState(status, icon, label) {
@@ -1025,7 +1064,7 @@
         readAloudButton.title = label;
     }
 
-    function speakNextChunk() {
+    function speakNextChunk(hindiVoice) {
         if (!isReading || currentChunk >= speechChunks.length) {
             isReading = false;
             updateReadingState('पढ़कर सुनें', '🔊', 'पूरा पेज पढ़कर सुनाएँ');
@@ -1033,17 +1072,16 @@
         }
 
         const utterance = new SpeechSynthesisUtterance(speechChunks[currentChunk]);
-        const hindiVoice = speech.getVoices().find((voice) => voice.lang.toLowerCase().startsWith('hi'));
 
         utterance.lang = hindiVoice ? hindiVoice.lang : 'hi-IN';
         utterance.voice = hindiVoice || null;
-        utterance.rate = 0.9;
+        utterance.rate = 0.85;
         utterance.onend = () => {
             if (!isReading) {
                 return;
             }
             currentChunk += 1;
-            speakNextChunk();
+            speakNextChunk(hindiVoice);
         };
         utterance.onerror = () => {
             if (!isReading) {
@@ -1079,7 +1117,11 @@
         currentChunk = 0;
         isReading = true;
         updateReadingState('पढ़ा जा रहा है', '⏸', 'पढ़ना रोकें');
-        speakNextChunk();
+        waitForHindiVoice().then((hindiVoice) => {
+            if (isReading) {
+                speakNextChunk(hindiVoice);
+            }
+        });
     });
 
     stopReadingButton.addEventListener('click', () => {
