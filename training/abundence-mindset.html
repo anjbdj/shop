@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Abundance Mindset - दुकानदार के लिए</title>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f5f7fb;
+            color: #343a40;
+            font-family: "Noto Sans Devanagari", "Mangal", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .hero {
+            background:
+                linear-gradient(135deg, rgba(13, 71, 161, .96), rgba(0, 150, 136, .94));
+            color: #fff;
+            padding: 65px 20px 75px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.06);
+            right: -100px;
+            top: -100px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 750px;
+            margin: auto;
+            opacity: .94;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.25);
+            padding: 7px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           SECTION
+        ========================== */
+
+        .section {
+            padding: 55px 0;
+        }
+
+        .section-title {
+            font-size: 30px;
+            font-weight: 800;
+            color: #173f5f;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: #6c757d;
+            margin-bottom: 35px;
+        }
+
+        /* =========================
+           MINDSET BOX
+        ========================== */
+
+        .mindset-box {
+            margin-top: -40px;
+            position: relative;
+            z-index: 5;
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 12px 35px rgba(0,0,0,.10);
+        }
+
+        .mindset-column {
+            padding: 20px;
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .scarcity {
+            background: #fff3f3;
+            border: 1px solid #ffd6d6;
+        }
+
+        .abundance {
+            background: #effaf3;
+            border: 1px solid #ccefd8;
+        }
+
+        .mindset-title {
+            font-size: 21px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .scarcity .mindset-title {
+            color: #c0392b;
+        }
+
+        .abundance .mindset-title {
+            color: #218838;
+        }
+
+        .mindset-quote {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* =========================
+           CARDS
+        ========================== */
+
+        .practice-card {
+            background: #fff;
+            border: none;
+            border-radius: 14px;
+            height: 100%;
+            padding: 27px;
+            box-shadow: 0 5px 22px rgba(0,0,0,.065);
+            transition: all .2s ease;
+        }
+
+        .practice-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.10);
+        }
+
+        .practice-number {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #e8f1ff;
+            color: #0d47a1;
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .practice-card h4 {
+            font-size: 20px;
+            color: #173f5f;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .practice-card ul {
+            padding-left: 22px;
+            margin-bottom: 0;
+        }
+
+        .practice-card li {
+            margin-bottom: 6px;
+        }
+
+        /* =========================
+           RULE / QUOTE
+        ========================== */
+
+        .rule {
+            background: #fff8e6;
+            border-left: 5px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-top: 18px;
+            color: #674d00;
+            font-weight: 600;
+        }
+
+        .green-rule {
+            background: #eaf8ef;
+            border-left: 5px solid #28a745;
+            color: #155724;
+        }
+
+        .blue-rule {
+            background: #eaf4ff;
+            border-left: 5px solid #007bff;
+            color: #084c8d;
+        }
+
+        /* =========================
+           LANGUAGE TRANSFORMATION
+        ========================== */
+
+        .language-card {
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .old-thinking {
+            background: #fff1f1;
+            border-left: 4px solid #dc3545;
+        }
+
+        .new-thinking {
+            background: #edf9f1;
+            border-left: 4px solid #28a745;
+        }
+
+        .thinking-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: .5px;
+            margin-bottom: 7px;
+        }
+
+        .old-thinking .thinking-label {
+            color: #dc3545;
+        }
+
+        .new-thinking .thinking-label {
+            color: #218838;
+        }
+
+        /* =========================
+           BIG MANTRA
+        ========================== */
+
+        .mantra-section {
+            background: linear-gradient(135deg, #172b4d, #243b55);
+            color: #fff;
+            border-radius: 18px;
+            padding: 45px 30px;
+        }
+
+        .mantra-section h2 {
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .mantra {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 10px;
+            padding: 17px 20px;
+            margin-bottom: 12px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .mantra:last-child {
+            margin-bottom: 0;
+        }
+
+        /* =========================
+           DAILY PRACTICE
+        ========================== */
+
+        .daily-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 6px 25px rgba(0,0,0,.07);
+        }
+
+        .daily-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .daily-item:last-child {
+            border-bottom: 0;
+        }
+
+        .daily-icon {
+            min-width: 36px;
+            height: 36px;
+            background: #e9f7ef;
+            color: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin-right: 13px;
+        }
+
+        /* =========================
+           CHECKLIST
+        ========================== */
+
+        .checklist {
+            background: #f0f7ff;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid #d9eaff;
+        }
+
+        .custom-control-label {
+            cursor: pointer;
+        }
+
+        .custom-control {
+            margin-bottom: 14px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #172b4d;
+            color: rgba(255,255,255,.75);
+            padding: 30px 15px;
+            text-align: center;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 767px) {
+
+            .hero {
+                padding: 45px 15px 65px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+
+            .mindset-box {
+                margin-top: -30px;
+                padding: 20px;
+            }
+
+            .practice-card {
+                padding: 22px;
+            }
+
+            .mantra-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<!-- ==========================================
+     HERO
+=========================================== -->
+
+<header class="hero text-center">
+
+    <div class="container">
+
+        <div class="hero-badge">
+            🧠 Shopkeeper Mindset Guide
+        </div>
+
+        <h1>
+            💰 Abundance Mindset
+        </h1>
+
+        <p>
+            “पैसा नहीं है” वाली सोच से निकलकर
+            “सही अवसर, सही ग्राहक और सही लाभ” वाली सोच विकसित करें।
+        </p>
+
+    </div>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- ==========================================
+         MINDSET TRANSFORMATION
+    =========================================== -->
+
+    <div class="mindset-box">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3 mb-md-0">
+
+                <div class="mindset-column scarcity">
+
+                    <div class="mindset-title">
+                        🔴 Scarcity Mindset
+                    </div>
+
+                    <p class="mindset-quote">
+                        “ग्राहक चला गया तो नुकसान हो जाएगा।”
+                    </p>
+
+                    <p class="mb-0 mt-3">
+                        “ग्राहक के पास पैसा नहीं है,
+                        इसलिए मुझे price कम करना पड़ेगा।”
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6">
+
+                <div class="mindset-column abundance">
+
+                    <div class="mindset-title">
+                        🟢 Abundance Mindset
+                    </div>
+
+                    <p class="mindset-quote">
+                        “मैं ग्राहक का सम्मान करूंगा,
+                        लेकिन अपने व्यापार को नुकसान नहीं पहुंचाऊंगा।”
+                    </p>
+
+                    <p class="mb-0 mt-3">
+                        “मुझे सही value, सही customer और
+                        profitable sale पर ध्यान देना है।”
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         INTRO
+    =========================================== -->
+
+    <section class="section">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                Abundance Mindset का सही अर्थ
+            </h2>
+
+            <p class="section-subtitle">
+                Abundance का मतलब ग्राहक से जबरदस्ती पैसा खर्च करवाना नहीं है।
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-10 mx-auto">
+
+                <div class="rule blue-rule">
+
+                    💡 <strong>महत्वपूर्ण:</strong>
+                    Abundance mindset का मतलब है कि दुकानदार
+                    scarcity के डर में गलत discount, अनावश्यक उधार
+                    या नुकसान वाली बिक्री न करे।
+
+                    ग्राहक की आर्थिक स्थिति का सम्मान करें और
+                    केवल उचित value और service प्रदान करें।
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         PRACTICES
+    =========================================== -->
+
+    <section class="section pt-0">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                🌱 Abundance Mindset बनाने की Practices
+            </h2>
+
+            <p class="section-subtitle">
+                रोज़मर्रा के व्यापार में इन आदतों को लागू करें।
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+
+            <!-- 01 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        01
+                    </div>
+
+                    <h4>
+                        “पैसा नहीं है” को अंतिम सत्य न मानें
+                    </h4>
+
+                    <p>
+                        ग्राहक का “पैसा नहीं है” कहना हमेशा यह साबित
+                        नहीं करता कि उसके पास खर्च करने के लिए पैसा
+                        बिल्कुल नहीं है।
+                    </p>
+
+                    <div class="rule">
+                        सोच बदलें:<br>
+                        “मुझे सही value और सही customer पर ध्यान देना है।”
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 02 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        02
+                    </div>
+
+                    <h4>
+                        Customer की प्राथमिकता समझें
+                    </h4>
+
+                    <p>
+                        हर व्यक्ति अपने पैसे को अलग-अलग चीजों पर
+                        प्राथमिकता के अनुसार खर्च करता है।
+                    </p>
+
+                    <ul>
+                        <li>Customer को judge न करें।</li>
+                        <li>अपनी pricing policy न बदलें।</li>
+                        <li>उचित विकल्प और value बताएं।</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- 03 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        03
+                    </div>
+
+                    <h4>
+                        Customer खोने के डर से discount न दें
+                    </h4>
+
+                    <p>
+                        हर customer को बनाए रखने के लिए price कम करना
+                        long-term में business के लिए नुकसानदायक हो सकता है।
+                    </p>
+
+                    <div class="rule green-rule">
+                        “हर customer जरूरी नहीं है,
+                        लेकिन हर customer के साथ अच्छा व्यवहार जरूरी है।”
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 04 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        04
+                    </div>
+
+                    <h4>
+                        हर Sale को जीत न मानें
+                    </h4>
+
+                    <p>
+                        सिर्फ बिक्री होना पर्याप्त नहीं है।
+                        वास्तविक profit को समझना जरूरी है।
+                    </p>
+
+                    <div class="rule">
+                        Sale → Revenue → Expenses → Profit
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 05 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        05
+                    </div>
+
+                    <h4>
+                        नुकसान से बचना भी कमाई है
+                    </h4>
+
+                    <ul>
+                        <li>अनावश्यक discount न देना।</li>
+                        <li>खराब उधार से बचना।</li>
+                        <li>गलत खरीदारी न करना।</li>
+                        <li>बेकार stock न जमा करना।</li>
+                    </ul>
+
+                    <div class="rule green-rule">
+                        “जो पैसा बचाया, वह भी कमाया।”
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 06 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        06
+                    </div>
+
+                    <h4>
+                        हर Customer को खुश करने की जरूरत नहीं
+                    </h4>
+
+                    <p>
+                        सम्मान देना जरूरी है, लेकिन हर demand पूरी करना
+                        जरूरी नहीं है।
+                    </p>
+
+                    <ul>
+                        <li>हर discount स्वीकार न करें।</li>
+                        <li>हर उधार न दें।</li>
+                        <li>नुकसान में sale न करें।</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- 07 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        07
+                    </div>
+
+                    <h4>
+                        एक Customer पर निर्भर न रहें
+                    </h4>
+
+                    <p>
+                        दुकान की कमाई केवल एक customer पर निर्भर नहीं होनी चाहिए।
+                    </p>
+
+                    <ul>
+                        <li>नए customer बनाएं।</li>
+                        <li>अच्छे पुराने customer बनाए रखें।</li>
+                        <li>Repeat business बढ़ाएं।</li>
+                        <li>Market को समझें।</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- 08 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        08
+                    </div>
+
+                    <h4>
+                        “सस्ता” नहीं, “सही Value” बेचें
+                    </h4>
+
+                    <p>
+                        हमेशा सबसे सस्ता बनने की कोशिश करने के बजाय
+                        अपनी service और reliability को मजबूत करें।
+                    </p>
+
+                    <ul>
+                        <li>अच्छी service</li>
+                        <li>भरोसा</li>
+                        <li>Availability</li>
+                        <li>Convenience</li>
+                        <li>साफ pricing</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- 09 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        09
+                    </div>
+
+                    <h4>
+                        उधार को Abundance न समझें
+                    </h4>
+
+                    <p>
+                        Customer को सामान देना और पैसा कमाना
+                        एक ही बात नहीं है।
+                    </p>
+
+                    <div class="rule">
+                        “सामान चला गया” ≠ “पैसा आ गया”
+                    </div>
+
+                    <p class="mt-3 mb-0">
+                        Healthy cash flow को प्राथमिकता दें।
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 10 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        10
+                    </div>
+
+                    <h4>
+                        Daily Profit Target रखें
+                    </h4>
+
+                    <p>
+                        केवल Sales Target न रखें।
+                        Profit और Cash Collection को भी track करें।
+                    </p>
+
+                    <ul>
+                        <li>Daily Sales Target</li>
+                        <li>Minimum Margin</li>
+                        <li>Maximum Discount</li>
+                        <li>Credit Limit</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- 11 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        11
+                    </div>
+
+                    <h4>
+                        Cash को सम्मान दें
+                    </h4>
+
+                    <p>
+                        Abundance का अर्थ पैसा बिना सोचे खर्च करना नहीं है।
+                    </p>
+
+                    <div class="rule green-rule">
+                        पैसा आता है → संभलता है → Profit बनता है →
+                        Business में लगता है → और पैसा बनाने की क्षमता बढ़ती है।
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 12 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        12
+                    </div>
+
+                    <h4>
+                        Profit लेने में Guilty न हों
+                    </h4>
+
+                    <p>
+                        यदि आप सही product, अच्छी service और उचित price
+                        दे रहे हैं, तो उचित profit लेना व्यापार का स्वाभाविक हिस्सा है।
+                    </p>
+
+                    <div class="rule">
+                        “उचित Profit गलत चीज़ नहीं है।”
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 13 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        13
+                    </div>
+
+                    <h4>
+                        Opportunity देखना सीखें
+                    </h4>
+
+                    <p>
+                        Customer कहे “यह मेरे budget से बाहर है”
+                        तो तुरंत discount देने के बजाय उचित विकल्प देखें।
+                    </p>
+
+                    <div class="rule blue-rule">
+                        “Price कम करने से पहले Solution खोजें।”
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 14 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        14
+                    </div>
+
+                    <h4>
+                        रोज़ Opportunities लिखें
+                    </h4>
+
+                    <p>
+                        दिन के अंत में तीन सवाल खुद से पूछें:
+                    </p>
+
+                    <ul>
+                        <li>आज पैसा कहाँ से आया?</li>
+                        <li>आज profit कहाँ बना?</li>
+                        <li>कल पैसा बढ़ाने का अवसर क्या है?</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- 15 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="practice-card">
+
+                    <div class="practice-number">
+                        15
+                    </div>
+
+                    <h4>
+                        अपनी भाषा बदलें
+                    </h4>
+
+                    <p>
+                        जिस भाषा में हम रोज़ सोचते हैं,
+                        वही हमारी business mentality को प्रभावित करती है।
+                    </p>
+
+                    <div class="rule green-rule">
+                        “Problem की भाषा से Opportunity की भाषा की ओर जाएं।”
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         LANGUAGE TRANSFORMATION
+    =========================================== -->
+
+    <section class="section pt-0">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                🗣️ अपनी Business Language बदलें
+            </h2>
+
+            <p class="section-subtitle">
+                Scarcity वाली भाषा को Opportunity वाली भाषा से बदलें।
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+
+            <!-- 1 -->
+            <div class="col-lg-6 mb-3">
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <div class="language-card old-thinking">
+
+                            <div class="thinking-label">
+                                ❌ पुरानी सोच
+                            </div>
+
+                            “ग्राहक ही नहीं हैं।”
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="language-card new-thinking">
+
+                            <div class="thinking-label">
+                                ✅ नई सोच
+                            </div>
+
+                            “मुझे profitable customers खोजने हैं।”
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2 -->
+            <div class="col-lg-6 mb-3">
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <div class="language-card old-thinking">
+
+                            <div class="thinking-label">
+                                ❌ पुरानी सोच
+                            </div>
+
+                            “लोगों के पास पैसा नहीं है।”
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="language-card new-thinking">
+
+                            <div class="thinking-label">
+                                ✅ नई सोच
+                            </div>
+
+                            “मुझे अपनी value बेहतर दिखानी है।”
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3 -->
+            <div class="col-lg-6 mb-3">
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <div class="language-card old-thinking">
+
+                            <div class="thinking-label">
+                                ❌ पुरानी सोच
+                            </div>
+
+                            “बिना discount कोई नहीं खरीदता।”
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="language-card new-thinking">
+
+                            <div class="thinking-label">
+                                ✅ नई सोच
+                            </div>
+
+                            “मुझे सही value और pricing रखनी है।”
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4 -->
+            <div class="col-lg-6 mb-3">
+
+                <div class="row">
+
+                    <div class="col-6">
+
+                        <div class="language-card old-thinking">
+
+                            <div class="thinking-label">
+                                ❌ पुरानी सोच
+                            </div>
+
+                            “सब उधार मांगते हैं।”
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+
+                        <div class="language-card new-thinking">
+
+                            <div class="thinking-label">
+                                ✅ नई सोच
+                            </div>
+
+                            “मुझे अपना cash collection मजबूत करना है।”
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         IMPORTANT PRINCIPLES
+    =========================================== -->
+
+    <section class="section pt-0">
+
+        <div class="row">
+
+            <div class="col-lg-10 mx-auto">
+
+                <div class="mantra-section">
+
+                    <h2 class="text-center">
+                        ⭐ Abundance के Business Principles
+                    </h2>
+
+                    <div class="mantra">
+                        💰 पैसा कम नहीं है — लेकिन मेरा पैसा गलत जगह नहीं जाना चाहिए।
+                    </div>
+
+                    <div class="mantra">
+                        🤝 हर Customer जरूरी नहीं है, लेकिन हर Customer के साथ अच्छा व्यवहार जरूरी है।
+                    </div>
+
+                    <div class="mantra">
+                        📈 बिक्री लक्ष्य नहीं है — profitable और sustainable बिक्री लक्ष्य है।
+                    </div>
+
+                    <div class="mantra">
+                        🧠 Customer को सम्मान दें, लेकिन अपनी business policy न छोड़ें।
+                    </div>
+
+                    <div class="mantra">
+                        💵 Cash received, credit sale से ज्यादा मजबूत है।
+                    </div>
+
+                    <div class="mantra">
+                        🌱 एक ग्राहक के जाने से business खत्म नहीं होता।
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         MORNING PRACTICE
+    =========================================== -->
+
+    <section class="section pt-0">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                🌅 सुबह की 5 मिनट की Mindset Practice
+            </h2>
+
+            <p class="section-subtitle">
+                दुकान खोलने से पहले इन बातों को याद करें।
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-lg-9 mx-auto">
+
+                <div class="daily-box">
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">1</div>
+
+                        <div>
+                            मैं हर ग्राहक का सम्मान करूंगा।
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">2</div>
+
+                        <div>
+                            मैं बिना वजह नुकसान में सामान नहीं बेचूंगा।
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">3</div>
+
+                        <div>
+                            मैं उचित profit लेने में guilty महसूस नहीं करूंगा।
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">4</div>
+
+                        <div>
+                            मैं उधार के बजाय healthy cash flow पर ध्यान दूंगा।
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">5</div>
+
+                        <div>
+                            मैं एक customer के जाने से नहीं डरूंगा।
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">6</div>
+
+                        <div>
+                            मैं नए opportunities और नए customers के लिए खुला रहूंगा।
+                        </div>
+
+                    </div>
+
+
+                    <div class="daily-item">
+
+                        <div class="daily-icon">7</div>
+
+                        <div>
+                            मैं केवल sales नहीं, बल्कि profit और cash collection भी देखूंगा।
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         DAILY CHECKLIST
+    =========================================== -->
+
+    <section class="section pt-0">
+
+        <div class="text-center">
+
+            <h2 class="section-title">
+                ✅ Daily Abundance Checklist
+            </h2>
+
+            <p class="section-subtitle">
+                दिन खत्म होने से पहले खुद से ये सवाल पूछें।
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-lg-9 mx-auto">
+
+                <div class="checklist">
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check1">
+
+                        <label class="custom-control-label" for="check1">
+                            क्या मैंने आज बिना वजह discount दिया?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check2">
+
+                        <label class="custom-control-label" for="check2">
+                            क्या मैंने आज किसी sale में अनावश्यक नुकसान किया?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check3">
+
+                        <label class="custom-control-label" for="check3">
+                            क्या आज मेरा cash collection अच्छा रहा?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check4">
+
+                        <label class="custom-control-label" for="check4">
+                            क्या मैंने पुराने outstanding payments को देखा?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check5">
+
+                        <label class="custom-control-label" for="check5">
+                            क्या आज मुझे कोई नया business opportunity मिला?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check6">
+
+                        <label class="custom-control-label" for="check6">
+                            क्या मैंने आज किसी customer को अच्छी service दी?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check7">
+
+                        <label class="custom-control-label" for="check7">
+                            क्या मैंने आज sales के साथ वास्तविक profit भी देखा?
+                        </label>
+                    </div>
+
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               id="check8">
+
+                        <label class="custom-control-label" for="check8">
+                            कल पैसा और business बढ़ाने का एक अवसर क्या है?
+                        </label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         FINAL MESSAGE
+    =========================================== -->
+
+    <section class="section pt-0">
+
+        <div class="row">
+
+            <div class="col-lg-9 mx-auto">
+
+                <div class="rule green-rule text-center"
+                     style="font-size: 19px; padding: 25px;">
+
+                    🌱 <strong>याद रखें:</strong><br>
+
+                    ग्राहक की कमी पर ध्यान देने के बजाय
+                    <strong>Value, Profit, Cash Flow और Opportunities</strong>
+                    पर ध्यान दें।
+
+                    <br><br>
+
+                    <strong>
+                        “ग्राहक का सम्मान करें।
+                        उचित कीमत रखें।
+                        सही लाभ कमाएं।
+                        और नए अवसरों के लिए हमेशा तैयार रहें।”
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
+
+
+<!-- ==========================================
+     FOOTER
+=========================================== -->
+
+<footer>
+
+    <p class="mb-1">
+        <strong>Shopkeeper Abundance Mindset</strong>
+    </p>
+
+    <p class="mb-0">
+        उचित Value • सही Profit • Healthy Cash Flow • नए Opportunities
+    </p>
+
+</footer>
+
+
+<!-- ==========================================
+     BOOTSTRAP 4 JS
+=========================================== -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
