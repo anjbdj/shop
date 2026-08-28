@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>80/20 नियम - दुकानदार के लिए</title>
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background: #f4f6f9;
+            color: #343a40;
+            font-family: "Noto Sans Devanagari", "Mangal", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #162447, #1f6f8b);
+            color: white;
+            padding: 55px 20px;
+            border-radius: 0 0 25px 25px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 19px;
+            opacity: .92;
+        }
+
+        .principle-box {
+            background: white;
+            margin-top: -35px;
+            position: relative;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,.10);
+        }
+
+        .number-80 {
+            font-size: 55px;
+            font-weight: 900;
+            color: #1f6f8b;
+            line-height: 1;
+        }
+
+        .number-20 {
+            font-size: 55px;
+            font-weight: 900;
+            color: #f39c12;
+            line-height: 1;
+        }
+
+        .section-title {
+            color: #162447;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .section-subtitle {
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        .item-card {
+            background: white;
+            border: none;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.07);
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .item-card .card-header {
+            background: #162447;
+            color: white;
+            border: none;
+            padding: 18px 20px;
+            font-weight: 700;
+            font-size: 19px;
+        }
+
+        .icon {
+            font-size: 28px;
+            margin-right: 8px;
+        }
+
+        .focus-box {
+            background: #e8f7f1;
+            border-left: 5px solid #28a745;
+            padding: 18px;
+            border-radius: 7px;
+        }
+
+        .warning-box {
+            background: #fff5df;
+            border-left: 5px solid #f39c12;
+            padding: 18px;
+            border-radius: 7px;
+        }
+
+        .danger-box {
+            background: #fff0f0;
+            border-left: 5px solid #dc3545;
+            padding: 18px;
+            border-radius: 7px;
+        }
+
+        .blue-box {
+            background: #eef6ff;
+            border-left: 5px solid #007bff;
+            padding: 18px;
+            border-radius: 7px;
+        }
+
+        .formula {
+            background: #162447;
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 21px;
+            margin: 25px 0;
+        }
+
+        .formula strong {
+            color: #ffc107;
+        }
+
+        .rule-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,.06);
+        }
+
+        .rule-table th {
+            background: #162447;
+            color: white;
+            border: none;
+        }
+
+        .rule-table td {
+            vertical-align: middle;
+        }
+
+        .priority {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .priority-high {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .priority-low {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .golden-section {
+            background: linear-gradient(135deg, #162447, #1f6f8b);
+            color: white;
+            border-radius: 18px;
+            padding: 35px;
+        }
+
+        .golden-rule {
+            background: rgba(255,255,255,.10);
+            padding: 13px 17px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .footer {
+            padding: 35px 15px;
+            color: #6c757d;
+        }
+
+        @media(max-width: 767px) {
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .number-80,
+            .number-20 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero text-center">
+    <div class="container">
+
+        <div class="mb-3" style="font-size:45px;">
+            📊
+        </div>
+
+        <h1>80/20 नियम</h1>
+
+        <p class="mb-0">
+            कम चीज़ों पर सही ध्यान देकर ज्यादा बिक्री, ज्यादा लाभ और बेहतर व्यापार
+        </p>
+
+    </div>
+</section>
+
+
+<div class="container">
+
+    <!-- =====================================================
+         PRINCIPLE INTRO
+    ====================================================== -->
+
+    <div class="principle-box">
+
+        <div class="row align-items-center text-center">
+
+            <div class="col-md-5">
+                <div class="number-20">20%</div>
+                <strong>महत्वपूर्ण चीज़ें</strong>
+                <p class="text-muted mb-0">
+                    ग्राहक, Products, काम और अवसर
+                </p>
+            </div>
+
+            <div class="col-md-2 my-3">
+                <div style="font-size:35px;">
+                    ➜
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="number-80">80%</div>
+                <strong>परिणाम</strong>
+                <p class="text-muted mb-0">
+                    Sales, Profit और Growth
+                </p>
+            </div>
+
+        </div>
+
+        <div class="formula">
+            <strong>80/20 का मतलब:</strong><br>
+            हर चीज़ पर बराबर मेहनत करने के बजाय,
+            उन 20% चीज़ों को पहचानें जो आपके व्यापार के 80% परिणाम पैदा करती हैं।
+        </div>
+
+        <div class="blue-box">
+            <strong>ध्यान दें:</strong>
+            80/20 कोई निश्चित गणितीय नियम नहीं है। वास्तविक अनुपात 70/30,
+            90/10 या कुछ और भी हो सकता है। इसका उद्देश्य है
+            <strong>सबसे ज्यादा परिणाम देने वाली चीज़ों पर सबसे ज्यादा ध्यान देना।</strong>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SECTION 1 - PRODUCTS
+    ====================================================== -->
+
+    <section class="mt-5">
+
+        <h2 class="section-title">
+            📦 1. Products पर 80/20 नियम
+        </h2>
+
+        <p class="section-subtitle">
+            दुकान के सभी products समान मात्रा में बिक्री या profit नहीं देते।
+            अपने सबसे महत्वपूर्ण products पहचानें।
+        </p>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        🔥 आपके Top Products
+                    </div>
+
+                    <div class="card-body">
+
+                        <p>
+                            अक्सर कुछ ही products आपकी sales का बड़ा हिस्सा बनाते हैं।
+                        </p>
+
+                        <ul class="checklist">
+                            <li>सबसे ज्यादा बिकने वाले 20% products खोजें।</li>
+                            <li>सबसे ज्यादा profit देने वाले products अलग करें।</li>
+                            <li>इन products का stock कभी खत्म न होने दें।</li>
+                            <li>इनकी purchase planning पहले करें।</li>
+                            <li>इनकी कीमत और margin नियमित check करें।</li>
+                        </ul>
+
+                        <div class="focus-box">
+                            <strong>Focus:</strong>
+                            Top-selling और high-margin products को सबसे ज्यादा attention दें।
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 mb-4">
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        📉 Slow Moving Products
+                    </div>
+
+                    <div class="card-body">
+
+                        <p>
+                            दुकान में ऐसे products भी हो सकते हैं जो लंबे समय तक पड़े रहते हैं
+                            और पैसा stock में फंसा रहता है।
+                        </p>
+
+                        <ul class="checklist">
+                            <li>Slow-moving stock की पहचान करें।</li>
+                            <li>ऐसे products की नई खरीद कम करें।</li>
+                            <li>जरूरत हो तो उचित clearance strategy बनाएं।</li>
+                            <li>Dead stock को नियमित review करें।</li>
+                            <li>सिर्फ इसलिए stock न रखें क्योंकि वह कभी-कभी बिकता है।</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>याद रखें:</strong>
+                            Stock में फंसा पैसा भी आपकी business cost है।
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 2 - CUSTOMERS
+    ====================================================== -->
+
+    <section class="mt-4">
+
+        <h2 class="section-title">
+            👥 2. Customers पर 80/20 नियम
+        </h2>
+
+        <p class="section-subtitle">
+            हर customer समान मात्रा में sales, profit और repeat business नहीं देता।
+        </p>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        ⭐ आपके महत्वपूर्ण ग्राहक
+                    </div>
+
+                    <div class="card-body">
+
+                        <p>
+                            उन customers को पहचानें जो नियमित रूप से खरीदते हैं
+                            और आपके business के लिए अच्छे हैं।
+                        </p>
+
+                        <ul class="checklist">
+                            <li>Regular customers की पहचान करें।</li>
+                            <li>उनकी पसंद और सामान्य requirements समझें।</li>
+                            <li>अच्छी service दें।</li>
+                            <li>उनकी समस्याओं का जल्दी समाधान करें।</li>
+                            <li>उनके साथ long-term relationship बनाएं।</li>
+                        </ul>
+
+                        <div class="focus-box">
+                            <strong>Goal:</strong>
+                            अच्छे customers को केवल एक बार नहीं,
+                            लंबे समय तक ग्राहक बनाए रखना।
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 mb-4">
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        ⚠️ High Effort / Low Return Customers
+                    </div>
+
+                    <div class="card-body">
+
+                        <p>
+                            कुछ customers बहुत समय लेते हैं लेकिन business value बहुत कम देते हैं।
+                        </p>
+
+                        <ul class="checklist">
+                            <li>बार-बार अनावश्यक discount मांगना।</li>
+                            <li>बार-बार उधार मांगना।</li>
+                            <li>Payment में लगातार समस्या करना।</li>
+                            <li>बहुत समय लेकर बहुत कम खरीदारी करना।</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>ध्यान दें:</strong>
+                            ऐसे customer से भी सम्मानपूर्वक व्यवहार करें,
+                            लेकिन अपनी pricing और credit policy से समझौता न करें।
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 3 - MONEY
+    ====================================================== -->
+
+    <section class="mt-4">
+
+        <h2 class="section-title">
+            💰 3. Money पर 80/20 नियम
+        </h2>
+
+        <p class="section-subtitle">
+            केवल sales नहीं, बल्कि पैसा कहाँ से आता है और कहाँ फंसता है,
+            यह समझना ज्यादा महत्वपूर्ण है।
+        </p>
+
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        💵 Profit
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>Top profit-generating products पहचानें।</li>
+                            <li>High-margin products पर focus करें।</li>
+                            <li>अनावश्यक discount कम करें।</li>
+                            <li>Cost को नियमित check करें।</li>
+                        </ul>
+
+                        <div class="focus-box">
+                            <strong>मुख्य सवाल:</strong><br>
+                            “मेरी दुकान में असली profit कहाँ से आ रहा है?”
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        💳 Cash Flow
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>Cash collection पर ध्यान दें।</li>
+                            <li>Digital payments का सही record रखें।</li>
+                            <li>Outstanding amount track करें।</li>
+                            <li>अनावश्यक credit से बचें।</li>
+                        </ul>
+
+                        <div class="danger-box">
+                            <strong>महत्वपूर्ण:</strong><br>
+                            Sale हो जाना और पैसा मिल जाना दो अलग चीजें हैं।
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        📉 नुकसान
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>सबसे ज्यादा नुकसान देने वाले कारण खोजें।</li>
+                            <li>Discount leakage check करें।</li>
+                            <li>Dead stock identify करें।</li>
+                            <li>Bad debts को track करें।</li>
+                            <li>गलत खरीदारी कम करें।</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>लक्ष्य:</strong><br>
+                            20% बड़ी समस्याओं को खत्म करके 80% नुकसान को रोकना।
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 4 - TIME
+    ====================================================== -->
+
+    <section class="mt-4">
+
+        <h2 class="section-title">
+            ⏰ 4. Time पर 80/20 नियम
+        </h2>
+
+        <p class="section-subtitle">
+            दुकानदार का समय सबसे valuable resource है। उसे उन activities पर लगाएं
+            जो वास्तव में business बढ़ाती हैं।
+        </p>
+
+        <div class="card item-card mb-4">
+
+            <div class="card-body p-4">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <h4 class="text-success font-weight-bold">
+                            ✅ 20% High-Value Activities
+                        </h4>
+
+                        <ul class="checklist">
+                            <li>High-value customers की service</li>
+                            <li>Stock planning</li>
+                            <li>Profit और pricing review</li>
+                            <li>Supplier से बेहतर purchase deal</li>
+                            <li>Cash collection</li>
+                            <li>Fast-moving products की availability</li>
+                            <li>नए profitable customers बनाना</li>
+                            <li>Business improvement की planning</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <h4 class="text-danger font-weight-bold">
+                            ❌ Low-Value Activities
+                        </h4>
+
+                        <ul class="checklist">
+                            <li>अनावश्यक बहस</li>
+                            <li>हर ग्राहक को लंबे समय तक समझाना</li>
+                            <li>बार-बार बिना उद्देश्य price बदलना</li>
+                            <li>बिना planning stock खरीदना</li>
+                            <li>बेकार बैठकर समय निकालना</li>
+                            <li>ऐसे काम जिन्हें staff कर सकता है</li>
+                            <li>बार-बार एक ही गलती करना</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <div class="blue-box mt-3">
+                    <strong>समय का नियम:</strong>
+                    “व्यस्त रहना और productive होना एक ही चीज़ नहीं है।”
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 5 - SALES
+    ====================================================== -->
+
+    <section class="mt-4">
+
+        <h2 class="section-title">
+            📈 5. Sales पर 80/20 नियम
+        </h2>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        🔥 Sales Drivers
+                    </div>
+
+                    <div class="card-body">
+
+                        <p>
+                            यह पहचानें कि आपकी बिक्री वास्तव में किन कारणों से आती है।
+                        </p>
+
+                        <ul class="checklist">
+                            <li>कौन से products सबसे ज्यादा बिकते हैं?</li>
+                            <li>कौन से customers सबसे ज्यादा खरीदते हैं?</li>
+                            <li>किस समय sales सबसे ज्यादा होती है?</li>
+                            <li>कौन से offers वास्तव में काम करते हैं?</li>
+                            <li>कौन से products साथ में बिकते हैं?</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        🛒 Smart Selling
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>Customer की जरूरत समझें।</li>
+                            <li>उचित विकल्प बताएं।</li>
+                            <li>Relevant complementary products बताएं।</li>
+                            <li>High-value products की जानकारी दें।</li>
+                            <li>लेकिन customer पर अनावश्यक दबाव न डालें।</li>
+                        </ul>
+
+                        <div class="focus-box">
+                            <strong>ध्यान:</strong>
+                            ज्यादा products दिखाना हमेशा ज्यादा sales नहीं बनाता।
+                            सही products दिखाना ज्यादा प्रभावी हो सकता है।
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 6 - INVENTORY
+    ====================================================== -->
+
+    <section class="mt-4">
+
+        <h2 class="section-title">
+            📦 6. Inventory पर 80/20 नियम
+        </h2>
+
+        <div class="table-responsive rule-table">
+
+            <table class="table table-hover mb-0">
+
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>क्या देखें?</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>Fast Moving</strong>
+                        </td>
+                        <td>
+                            जल्दी और बार-बार बिकने वाले products
+                        </td>
+                        <td>
+                            <span class="priority priority-high">
+                                HIGH PRIORITY
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>High Profit</strong>
+                        </td>
+                        <td>
+                            ज्यादा margin देने वाले products
+                        </td>
+                        <td>
+                            <span class="priority priority-high">
+                                HIGH PRIORITY
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Slow Moving</strong>
+                        </td>
+                        <td>
+                            लंबे समय तक stock में रहने वाले products
+                        </td>
+                        <td>
+                            <span class="priority priority-low">
+                                REVIEW
+                            </span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <strong>Dead Stock</strong>
+                        </td>
+                        <td>
+                            लंबे समय से बिल्कुल नहीं बिक रहा
+                        </td>
+                        <td>
+                            <span class="priority priority-low">
+                                ACTION REQUIRED
+                            </span>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 7 - DAILY ROUTINE
+    ====================================================== -->
+
+    <section class="mt-5">
+
+        <h2 class="section-title">
+            📋 7. रोज़ की 80/20 Routine
+        </h2>
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        🌅 दुकान खोलते समय
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>आज के important customers देखें।</li>
+                            <li>Fast-moving products check करें।</li>
+                            <li>Critical stock की कमी देखें।</li>
+                            <li>आज का sales/profit target तय करें।</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        ☀️ दिन के दौरान
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>High-value customers पर ध्यान दें।</li>
+                            <li>Profit margin सुरक्षित रखें।</li>
+                            <li>अनावश्यक discount से बचें।</li>
+                            <li>Cash और credit का ध्यान रखें।</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card item-card">
+
+                    <div class="card-header">
+                        🌙 दुकान बंद करते समय
+                    </div>
+
+                    <div class="card-body">
+
+                        <ul class="checklist">
+                            <li>Total sales check करें।</li>
+                            <li>Approximate profit check करें।</li>
+                            <li>Cash collection मिलाएं।</li>
+                            <li>Outstanding payments देखें।</li>
+                            <li>कल की priority तय करें।</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION 8 - QUESTIONS
+    ====================================================== -->
+
+    <section class="mt-5">
+
+        <h2 class="section-title">
+            ❓ दुकानदार को हर सप्ताह ये 10 सवाल पूछने चाहिए
+        </h2>
+
+        <div class="card item-card">
+
+            <div class="card-body p-4">
+
+                <ol>
+
+                    <li class="mb-2">
+                        मेरे कौन से 20% products सबसे ज्यादा sales दे रहे हैं?
+                    </li>
+
+                    <li class="mb-2">
+                        कौन से products सबसे ज्यादा profit दे रहे हैं?
+                    </li>
+
+                    <li class="mb-2">
+                        मेरे सबसे अच्छे 20% customers कौन हैं?
+                    </li>
+
+                    <li class="mb-2">
+                        कौन से customers बहुत समय लेते हैं लेकिन कम value देते हैं?
+                    </li>
+
+                    <li class="mb-2">
+                        मेरा पैसा सबसे ज्यादा कहाँ फंस रहा है?
+                    </li>
+
+                    <li class="mb-2">
+                        कौन सा stock लंबे समय से पड़ा है?
+                    </li>
+
+                    <li class="mb-2">
+                        मेरा सबसे ज्यादा समय किस काम में जा रहा है?
+                    </li>
+
+                    <li class="mb-2">
+                        इनमें से कौन से काम वास्तव में sales या profit बढ़ाते हैं?
+                    </li>
+
+                    <li class="mb-2">
+                        मेरे 20% सबसे बड़े business problems कौन से हैं?
+                    </li>
+
+                    <li>
+                        अगर मुझे केवल 20% activities करने की अनुमति हो,
+                        तो मैं कौन-सी activities चुनूंगा?
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         GOLDEN RULES
+    ====================================================== -->
+
+    <section class="mt-5 mb-5">
+
+        <div class="golden-section">
+
+            <h2 class="text-center font-weight-bold mb-4">
+                ⭐ दुकानदार के लिए 80/20 के Golden Rules
+            </h2>
+
+            <div class="golden-rule">
+                1. हर चीज़ पर बराबर ध्यान मत दें।
+            </div>
+
+            <div class="golden-rule">
+                2. अपने सबसे ज्यादा बिकने वाले products को हमेशा उपलब्ध रखें।
+            </div>
+
+            <div class="golden-rule">
+                3. Sales से ज्यादा महत्वपूर्ण profitable sales हैं।
+            </div>
+
+            <div class="golden-rule">
+                4. अपने अच्छे और नियमित customers को पहचानें और बनाए रखें।
+            </div>
+
+            <div class="golden-rule">
+                5. High-effort और low-return activities को कम करें।
+            </div>
+
+            <div class="golden-rule">
+                6. Slow-moving और dead stock में पैसा फंसने न दें।
+            </div>
+
+            <div class="golden-rule">
+                7. अपना सबसे valuable समय सबसे valuable काम पर लगाएं।
+            </div>
+
+            <div class="golden-rule">
+                8. उधार और outstanding को लगातार monitor करें।
+            </div>
+
+            <div class="golden-rule">
+                9. अनावश्यक discount को profit leakage बनने न दें।
+            </div>
+
+            <div class="golden-rule">
+                10. हर सप्ताह अपने business के Top 20% drivers की समीक्षा करें।
+            </div>
+
+            <div class="text-center mt-4">
+
+                <h4>
+                    “कम चीज़ें करो, लेकिन सही चीज़ें करो —
+                    और उन पर पूरी ताकत लगाओ।”
+                </h4>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL SUMMARY
+    ====================================================== -->
+
+    <div class="card item-card mb-5">
+
+        <div class="card-body p-4 text-center">
+
+            <h3 class="section-title">
+                🎯 80/20 का अंतिम लक्ष्य
+            </h3>
+
+            <p class="lead">
+                <strong>
+                    सही ग्राहक + सही Product + सही समय + सही पैसा + सही मेहनत
+                </strong>
+            </p>
+
+            <div class="formula mb-0">
+
+                <strong>Focus</strong>
+                →
+                <strong>Better Decisions</strong>
+                →
+                <strong>Higher Profit</strong>
+                →
+                <strong>Business Growth</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer text-center">
+
+    <p class="mb-1">
+        <strong>व्यापार मंत्र:</strong>
+        बिक्री बढ़ाएं • Profit बचाएं • Cash Flow मजबूत करें • समय सही जगह लगाएं
+    </p>
+
+    <p class="mb-0">
+        80/20 Principle — Smart Business Thinking
+    </p>
+
+</footer>
+
+
+<!-- Bootstrap 4 JS -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
